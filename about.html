@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Gallery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #fff; }
+    .category-toggle svg { transition: transform 0.3s ease; }
+    .rotate-180 { transform: rotate(180deg); }
+    .product-card { background: #f4f4f4; border-radius: 10px; position: relative; cursor: pointer; overflow: hidden; text-align: center; }
+    .product-card img { width: 100%; transition: opacity 0.4s ease, transform 0.4s ease; position: relative; z-index: 1; height: 300px; object-fit: cover; }
+    .product-card .alt-img { opacity: 0; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 300px; object-fit: cover; }
+    .product-card:hover .alt-img { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+    .product-card:hover .main-img { opacity: 0; transform: scale(1.05); }
+    .badge-novedad { position: absolute; top: 10px; right: 10px; background: #fff; padding: 4px 8px; border-radius: 5px; font-size: 0.7rem; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .toggle-btn { border-radius: 30px; border: 1px solid #ddd; padding: 6px 12px; display: flex; align-items: center; gap: 10px; overflow: hidden; position: relative; width: 160px; justify-content: space-between; }
+    .toggle-icon { transition: transform 0.4s ease; }
+    .toggle-text { white-space: nowrap; transition: all 0.4s ease; opacity: 1; }
+    .toggle-btn.active .toggle-icon { transform: translateX(100%); }
+    .product-name { margin-top: 10px; font-size: 0.9rem; font-weight: 500; color: #333; }
+    #categoryList li button { text-decoration: none; border-bottom: 1px solid transparent; width: 100%; text-align: left; }
+    #categoryList li button:hover { border-bottom: 1px solid #000; }
+  </style>
+</head>
+<body class="p-5">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <h1 class="fs-2 fw-light mb-4" id="categoryHeading">Suspension</h1>
+      <button class="btn w-100 d-flex justify-content-between align-items-center category-toggle border-bottom mb-3" id="catToggle">
+        <span>CATEGORÍA</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5L10 13.5L15 8.5"/></svg>
+      </button>
+      <ul class="list-unstyled ps-2" id="categoryList">
+        <li><button class="btn btn-link text-dark p-0">All</button></li>
+        <li><button class="btn btn-link text-dark p-0">Ceiling Recessed</button></li>
+        <li><button class="btn btn-link text-dark p-0">Surface</button></li>
+        <li><button class="btn btn-link text-dark p-0">Suspension</button></li>
+        <li><button class="btn btn-link text-dark p-0">Wall</button></li>
+        <li><button class="btn btn-link text-dark p-0">Table & Floor</button></li>
+        <li><button class="btn btn-link text-dark p-0">Track Lights</button></li>
+        <li><button class="btn btn-link text-dark p-0">Custom Systems</button></li>
+        <li><button class="btn btn-link text-dark p-0">Outdoor</button></li>
+        <li><button class="btn btn-link text-dark p-0">Lamps</button></li>
+        <li><button class="btn btn-link text-dark p-0">Accessories</button></li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="d-flex justify-content-end mb-4">
+        <button class="toggle-btn" id="viewToggle">
+          <span class="toggle-text" id="toggleText">Default View</span>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <div class="row g-4" id="productGrid"></div>
+    </div>
+  </div>
+</div>
+<script>
+  const products = [
+    { id: 1, title: 'Product 1', default: 'assets/img/portfolio/portfolio-8.webp', hover: 'assets/img/portfolio/portfolio-9.webp' },
+    { id: 2, title: 'Product 2', default: 'assets/img/products/product2.webp', hover: 'assets/img/products/product2-hover.webp' },
+    { id: 3, title: 'Product 3', default: 'assets/img/products/product3.webp', hover: 'assets/img/products/product3-hover.webp' },
+    { id: 4, title: 'Product 4', default: 'assets/img/products/product4.webp', hover: 'assets/img/products/product4-hover.webp' },
+    { id: 5, title: 'Product 5', default: 'assets/img/products/product5.webp', hover: 'assets/img/products/product5-hover.webp' },
+    { id: 6, title: 'Product 6', default: 'assets/img/products/product6.webp', hover: 'assets/img/products/product6-hover.webp' },
+    { id: 7, title: 'Product 7', default: 'assets/img/products/product7.webp', hover: 'assets/img/products/product7-hover.webp' },
+    { id: 8, title: 'Product 8', default: 'assets/img/products/product8.webp', hover: 'assets/img/products/product8-hover.webp' },
+    { id: 9, title: 'Product 9', default: 'assets/img/products/product9.webp', hover: 'assets/img/products/product9-hover.webp' }
+  ];
+
+  let viewSet = 0;
+  const grid = document.getElementById('productGrid');
+
+  function renderGrid() {
+    grid.innerHTML = '';
+    products.forEach(p => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-4 col-md-6';
+      const card = document.createElement('div');
+      card.className = 'product-card p-4';
+      card.innerHTML = `
+        <div class="image-container position-relative">
+          <img src="${p.default}" class="main-img" alt="${p.title}">
+          <img src="${p.hover}" class="alt-img" alt="${p.title}">
+          ${p.id % 4 === 0 ? '<div class="badge-novedad">NOVEDAD</div>' : ''}
+        </div>
+        <div class="product-name">${p.title}</div>
+      `;
+      grid.appendChild(col);
+      col.appendChild(card);
+
+      card.addEventListener('mouseover', () => {
+        if (viewSet === 0) {
+          card.querySelector('.main-img').style.opacity = '0';
+          card.querySelector('.alt-img').style.opacity = '1';
+        }
+      });
+
+      card.addEventListener('mouseout', () => {
+        if (viewSet === 0) {
+          card.querySelector('.main-img').style.opacity = '1';
+          card.querySelector('.alt-img').style.opacity = '0';
+        }
+      });
+    });
+  }
+
+  renderGrid();
+
+  const catToggle = document.getElementById('catToggle');
+  const catList = document.getElementById('categoryList');
+  const categoryHeading = document.getElementById('categoryHeading');
+
+  catToggle.addEventListener('click', () => {
+    catList.classList.toggle('d-none');
+    catToggle.querySelector('svg').classList.toggle('rotate-180');
+  });
+
+  document.querySelectorAll('#categoryList button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      categoryHeading.textContent = btn.textContent;
+      document.querySelectorAll('#categoryList button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  const viewToggle = document.getElementById('viewToggle');
+  const toggleText = document.getElementById('toggleText');
+  viewToggle.addEventListener('click', () => {
+    viewSet = 1 - viewSet;
+    viewToggle.classList.toggle('active');
+    toggleText.textContent = viewSet === 0 ? 'Default View' : 'Alternate View';
+    document.querySelectorAll('.product-card').forEach(card => {
+      const mainImg = card.querySelector('.main-img');
+      const altImg = card.querySelector('.alt-img');
+      if (viewSet === 1) {
+        mainImg.style.opacity = '0';
+        altImg.style.opacity = '1';
+      } else {
+        mainImg.style.opacity = '1';
+        altImg.style.opacity = '0';
+      }
+    });
+  });
+</script>
+</body>
+</html>
