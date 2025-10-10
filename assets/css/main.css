@@ -145,7 +145,7 @@ h6 {
 .header {
   --background-color: rgba(255, 255, 255, 0);
   color: var(--default-color);
-  background-color: var(--background-color);
+  background: rgb(0, 0, 0);
   padding: 15px 0;
   transition: all 0.5s;
   z-index: 997;
@@ -165,6 +165,10 @@ h6 {
   margin: 0;
   font-weight: 500;
   color: var(--heading-color);
+}
+.logoos{
+  height : 100px;
+  width:100%;
 }
 
 /*--------------------------------------------------------------
@@ -577,20 +581,13 @@ section,
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-.hero {
+/* .hero {
   padding-top: 60px;
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding-bottom: 120px;
-  /* Typographic system for hero */
-  /* CTAs */
-  /* Meta row */
-  /* Portrait block */
-  /* Gentle section visual calm */
-  /* Spacing rhythm */
-  /* Subtle parallax simulation for large screens */
-  /* Responsive refinements */
+
 }
 
 .hero .intro .eyebrow .dot {
@@ -758,7 +755,7 @@ section .hero {
     flex-direction: column;
     align-items: flex-start;
   }
-}
+} */
 
 /*--------------------------------------------------------------
 # About Section

@@ -37,8 +37,8 @@
 
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">MinimalFolio</h1>
+        <img class="logoos" src="assets/img/logoos.png" alt="">
+        <!-- <h1 class="sitename text-white">ARTIEA</h1> -->
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -75,69 +75,199 @@
 
   <main class="main">
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero section">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+<!-- ========================= 3D Carousel Section ========================= -->
+<section id="hero-3d" class="hero-3d section">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
 
-        <div class="row align-items-center gx-5 gy-5">
-
-          <div class="col-lg-7">
-            <div class="intro" data-aos="fade-right" data-aos-delay="150">
-              <div class="eyebrow d-inline-flex align-items-center gap-2 mb-3">
-                <span class="dot"></span>
-                <span class="text">Lorem ipsum dolor sit amet</span>
-              </div>
-
-              <h1 class="display-heading mb-3">
-                Crafting calm digital experiences with thoughtful details
-              </h1>
-
-              <p class="lead mb-4">
-                Integer euismod nisl vitae sapien dictum, sed tempor urna posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus vel hendrerit augue.
-              </p>
-
-              <div class="cta-group d-flex flex-wrap align-items-center gap-3" data-aos="zoom-in" data-aos-delay="250">
-                <a href="portfolio" class="btn btn-ghost">
-                  View Selected Work
-                  <i class="bi bi-arrow-right ms-2"></i>
-                </a>
-                <a href="contact" class="link-underline">
-                  Get in touch
-                  <i class="bi bi-envelope ms-2"></i>
-                </a>
-              </div>
-
-              <div class="meta mt-4 d-flex flex-wrap align-items-center gap-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="meta-item d-flex align-items-center gap-2">
-                  <i class="bi bi-geo-alt"></i>
-                  <span>San Francisco, CA</span>
-                </div>
-                <div class="meta-item d-flex align-items-center gap-2">
-                  <i class="bi bi-circle"></i>
-                  <span>Available for freelance</span>
-                </div>
-              </div>
-            </div>
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="slide-info">
+          <div class="eyebrow"><span class="dot"></span><span class="text">Innovation in Motion</span></div>
+          <h2>Cobs</h2>
+          <p class="lead">A minimal cube spinning with light reflections — representing structure and balance in modern design.</p>
+          <div class="cta-row">
+            <button class="btn primary">Explore</button>
+            <button class="btn">Know More</button>
           </div>
-
-          <div class="col-lg-5">
-            <figure class="portrait-wrap position-relative" data-aos="fade-left" data-aos-delay="200">
-              <img src="assets/img/profile/profile-6.webp" alt="Profile Portrait" class="img-fluid portrait-img">
-              <figcaption class="visually-hidden">Minimal portrait preview</figcaption>
-
-              <div class="badge note" data-aos="zoom-in" data-aos-delay="300">
-                <i class="bi bi-star"></i>
-                <span>10+ yrs building elegant UIs</span>
-              </div>
-            </figure>
-          </div>
-
         </div>
-
+        <div class="canvas-wrap"><canvas class="three-canvas" id="canvas1"></canvas></div>
       </div>
 
-    </section><!-- /Hero Section -->
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="slide-info">
+          <div class="eyebrow"><span class="dot"></span><span class="text">Fluid Design</span></div>
+          <h2>laser blade light</h2>
+          <p class="lead">A smooth torus ring animated to reflect flow, elegance, and seamless creativity.</p>
+          <div class="cta-row">
+            <button class="btn primary">Discover</button>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+        <div class="canvas-wrap"><canvas class="three-canvas" id="canvas2"></canvas></div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <div class="slide-info">
+          <div class="eyebrow"><span class="dot"></span><span class="text">Dynamic Energy</span></div>
+          <h2>Spinning Sphere</h2>
+          <p class="lead">A glowing sphere symbolizing infinite possibilities and vibrant imagination.</p>
+          <div class="cta-row">
+            <button class="btn primary">View</button>
+            <button class="btn">Explore</button>
+          </div>
+        </div>
+        <div class="canvas-wrap"><canvas class="three-canvas" id="canvas3"></canvas></div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="swiper-slide">
+        <div class="slide-info">
+          <div class="eyebrow"><span class="dot"></span><span class="text">Creative Loop</span></div>
+          <h2>Animated Ring</h2>
+          <p class="lead">A shining metallic ring looping through space — symbolizing continuity and innovation.</p>
+          <div class="cta-row">
+            <button class="btn primary">Explore</button>
+            <button class="btn">More Info</button>
+          </div>
+        </div>
+        <div class="canvas-wrap"><canvas class="three-canvas" id="canvas4"></canvas></div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="swiper-slide">
+        <div class="slide-info">
+          <div class="eyebrow"><span class="dot"></span><span class="text">Organic Feel</span></div>
+          <h2>Deforming Blob</h2>
+          <p class="lead">A lively blob that morphs dynamically — symbolizing adaptability and creative evolution.</p>
+          <div class="cta-row">
+            <button class="btn primary">See More</button>
+            <button class="btn">Discover</button>
+          </div>
+        </div>
+        <div class="canvas-wrap"><canvas class="three-canvas" id="canvas5"></canvas></div>
+      </div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script>
+// ================== Swiper ==================
+const swiper = new Swiper(".mySwiper", {
+  loop: true,
+  pagination: { el: ".swiper-pagination", clickable: true },
+  autoplay: { delay: 4000, disableOnInteraction: false },
+  effect: "slide",
+  on: {
+    slideChangeTransitionStart: () => {
+      const prev = swiper.slides[swiper.previousIndex];
+      gsap.to(prev.querySelector(".slide-info"), { x: -50, opacity: 0, duration: 0.5 });
+      gsap.to(prev.querySelector(".three-canvas"), { scale: 0.9, opacity: 0, duration: 0.5 });
+    },
+    slideChangeTransitionEnd: () => {
+      const active = swiper.slides[swiper.activeIndex];
+      gsap.fromTo(active.querySelector(".slide-info"), { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" });
+      gsap.fromTo(active.querySelector(".three-canvas"), { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: "power2.out" });
+    }
+  }
+});
+
+
+// ================== Three.js 3D Animations ==================
+const canvasIds = ["canvas1","canvas2","canvas3","canvas4","canvas5"];
+canvasIds.forEach((id, index) => {
+  const canvas = document.getElementById(id);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  camera.position.z = 3;
+
+  const light = new THREE.PointLight(0xffffff,1);
+  light.position.set(5,5,5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff,0.3));
+
+  let mesh;
+  const mat = new THREE.MeshStandardMaterial({ color: 0x6be4d8, roughness:0.3, metalness:0.6 });
+  switch(index){
+    case 0: mesh = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), mat); break;
+    case 1: mesh = new THREE.Mesh(new THREE.TorusGeometry(0.7,0.25,16,100), mat); break;
+    case 2: mesh = new THREE.Mesh(new THREE.SphereGeometry(0.8,64,64), mat); break;
+    case 3: mesh = new THREE.Mesh(new THREE.RingGeometry(0.6,0.9,64), mat); break;
+    case 4: mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(0.9,1), mat); break;
+  }
+  scene.add(mesh);
+
+  gsap.to(mesh.rotation, {
+    x: "+=6.28",
+    y: "+=6.28",
+    repeat: -1,
+    duration: 20,
+    ease: "none"
+  });
+
+  function animate(){ requestAnimationFrame(animate); renderer.render(scene, camera); }
+  animate();
+});
+
+// ================== Handle Resize ==================
+window.addEventListener("resize", () => {
+  canvasIds.forEach(id => {
+    const canvas = document.getElementById(id);
+    const renderer = canvas._renderer; // store renderer in dom element for resize
+    if(renderer){
+      const camera = renderer.camera;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    }
+  });
+});
+</script>
+
+<style>
+.hero-3d { min-height:100vh; display:flex; align-items:center; justify-content:center; background:#0b0c10; padding:60px 0; }
+.swiper-slide { display:flex; align-items:center; justify-content:space-between; padding:40px; color:#fff; flex-wrap:wrap; }
+.slide-info { flex:1 1 45%; max-width:500px; }
+.canvas-wrap { flex:1 1 45%; height:400px; border-radius:12px; overflow:hidden; }
+.three-canvas { width:100%; height:100%; display:block; }
+.eyebrow { display:flex; align-items:center; gap:8px; text-transform:uppercase; font-size:13px; color:#aaa; }
+.eyebrow .dot { width:10px; height:10px; border-radius:50%; background:#6be4d8; }
+h2 { font-size:2rem; margin:10px 0; }
+.lead { color:#ccc; font-size:15px; line-height:1.6; }
+.btn { background:transparent; border:1px solid rgba(255,255,255,0.2); color:white; padding:8px 16px; border-radius:8px; cursor:pointer; transition:0.3s; }
+.btn.primary { background:#6be4d8; color:#000; border:none; }
+.btn:hover { transform:translateY(-2px); }
+.swiper-button-next,.swiper-button-prev { display:none !important; }
+.swiper-pagination-bullet { background:#6be4d8; opacity:0.3; width:6px; height:6px; margin:0 4px !important; transition:all 0.3s ease; }
+.swiper-pagination-bullet-active { background:#6be4d8; opacity:1; transform:scale(1.4); }
+
+@media(max-width:768px){ .swiper-slide { flex-direction:column; } .slide-info,.canvas-wrap { flex:1 1 100%; text-align:center; } }
+</style>
+
+
+<!-- next start-->
+
+<!-- next end -->
+
+
+
+
+
+
+
 
     <!-- About Section -->
     <section id="about" class="about section light-background">

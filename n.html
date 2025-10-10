@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Image Showcase with Heading & Hover Effect</title>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #f7f7f7 0%, #ffffff 100%);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  color: #fff;
+  height: 200vh;
+}
+
+/* Wrapper for heading + showcase */
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding-left: 50px;
+  perspective: 1200px;
+}
+
+/* Heading */
+.heading {
+  font-size: 4rem;
+  font-weight: 700;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+/* Showcase */
+.showcase {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Image layers */
+.layer {
+  position: absolute;
+  width: 480px;
+  height: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  
+ 
+  z-index: 2;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+.layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) saturate(1.1);
+  transition: transform 1s ease;
+}
+.layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  mix-blend-mode: soft-light;
+}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .wrapper{
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .heading{
+    font-size: 3rem;
+    margin-bottom: 50px;
+  }
+  .showcase{
+    width: 100%;
+    margin-left:0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="heading">Hello, Welcome!</div>
+  <section class="showcase">
+    <div class="layer" id="img1"><img src="assets/img/asdg/15.png"></div>
+    <div class="layer" id="img2"><img src="assets/img/asdg/10.png"></div>
+    <div class="layer" id="img3"><img src="assets/img/asdg/11.png"></div>
+    <div class="layer" id="img4"><img src="assets/img/asdg/12.png"></div>
+    <div class="layer" id="img5"><img src="assets/img/asdg/13.png"></div>
+  </section>
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Animate heading
+gsap.to(".heading",{
+  x:0,
+  opacity:1,
+  duration:1.5,
+  ease:"power3.out",
+  scrollTrigger:{
+    trigger:".heading",
+    start:"top 80%"
+  }
+});
+
+// Image initial 3D placement
+const layers = gsap.utils.toArray(".layer");
+gsap.set(layers,{
+  transformOrigin: "center center",
+  rotateY: i => gsap.utils.random(-40,40),
+  rotateX: i => gsap.utils.random(-15,15),
+  z: i => i * -120,
+  x: i => i * 80 - 160,
+  y: i => gsap.utils.random(-60,60),
+  opacity:0,
+  scale:0.8
+});
+
+// Scroll-triggered entrance
+gsap.to(layers,{
+  opacity:1,
+  scale:1,
+  duration:2,
+  ease:"expo.out",
+  stagger:0.2,
+  scrollTrigger:{
+    trigger: ".showcase",
+    start: "top 75%",
+  }
+});
+
+// Floating loop
+layers.forEach(layer=>{
+  gsap.to(layer,{
+    y:"+="+gsap.utils.random(20,60),
+    x:"+="+gsap.utils.random(-40,40),
+    rotationY:"+="+gsap.utils.random(-10,10),
+    duration:gsap.utils.random(4,7),
+    ease:"sine.inOut",
+    repeat:-1,
+    yoyo:true
+  });
+});
+
+// Mouse parallax
+const showcase = document.querySelector(".showcase");
+showcase.addEventListener("mousemove", (e)=>{
+  const x = (e.clientX / window.innerWidth - 0.5)*40;
+  const y = (e.clientY / window.innerHeight - 0.5)*30;
+  gsap.to(".showcase",{
+    rotationY:x,
+    rotationX:-y,
+    transformOrigin:"center",
+    duration:1.2,
+    ease:"power2.out"
+  });
+});
+
+// Hover shrink & fade effect
+layers.forEach(layer => {
+  layer.addEventListener("mouseenter", () => {
+    gsap.to(layer, {
+      scale: 0.3,       // Shrink
+      opacity: 0.2,     // Fade
+      duration: 0.5,
+      ease: "power2.out"
+    });
+  });
+  layer.addEventListener("mouseleave", () => {
+    gsap.to(layer, {
+      scale: 1,         // Back to normal
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out"
+    });
+  });
+});
+</script>
+
+</body>
+</html>
