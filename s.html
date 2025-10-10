@@ -1,151 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arkoslight Style Cinematic Banner</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-      font-family: 'Inter', sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic Scroll - Smooth Arkoslight</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: "Inter", sans-serif;
+  }
 
-    .slider {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-    }
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
 
-    .slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transform: translateY(100%) scale(1.05);
-      transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+  .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(100%);
+    will-change: transform, opacity;
+  }
 
-    .slide.active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      z-index: 2;
-      animation: zoomIn 9s ease-in-out infinite alternate;
-    }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 1;
+  }
 
-    .slide.prev {
-      opacity: 0;
-      transform: translateY(-100%) scale(1.05);
-      z-index: 1;
-    }
+  .content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    max-width: 1000px;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(60px);
+  }
 
-    @keyframes zoomIn {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
-    }
+  h3 {
+    font-size: 1rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+  }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 1;
-    }
+  h1 {
+    font-size: 8vw;
+    font-weight: 500;
+    line-height: 1.05;
+    color: #fff;
+    text-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    margin-bottom: 3rem;
+  }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      color: #fff;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 1.2s ease;
-      max-width: 1000px;
-      padding: 0 20px;
-    }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
 
-    .slide.active .content {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .btn {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
 
-    h3 {
-      font-size: 1rem;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      font-weight: 300;
-      color: #e0e0e0;
-      margin-bottom: 1.5rem;
-    }
+  .btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.05);
+  }
 
-    h1 {
-      font-size: 8vw;
-      font-weight: 500;
-      line-height: 1.05;
-      color: #fff;
-      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
-      margin-bottom: 3rem;
-    }
+  .counter {
+    position: absolute;
+    right: 60px;
+    bottom: 40px;
+    font-size: 1rem;
+    color: #ccc;
+    letter-spacing: 2px;
+    z-index: 10;
+    font-weight: 300;
+  }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-    }
-
-    .btn {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      padding: 0.9rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-
-    .btn:hover {
-      background: #fff;
-      color: #000;
-      transform: scale(1.05);
-    }
-
-    .counter {
-      position: absolute;
-      right: 60px;
-      bottom: 40px;
-      font-size: 1rem;
-      color: #ccc;
-      letter-spacing: 2px;
-      z-index: 10;
-      font-weight: 300;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 11vw;
-      }
-      .btn {
-        padding: 0.7rem 1.4rem;
-        font-size: 0.95rem;
-      }
-    }
-  </style>
+  @media (max-width: 768px) {
+    h1 { font-size: 11vw; }
+    .btn { padding: 0.7rem 1.4rem; font-size: 0.95rem; }
+  }
+</style>
 </head>
 <body>
 
+  
   <div class="slider">
-    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80');">
+    <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-7.webp');">
       <div class="overlay"></div>
       <div class="content">
         <h3>A NEW DIMENSION</h3>
@@ -156,8 +128,7 @@
         </div>
       </div>
     </div>
-
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80');">
+    <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-8.webp');">
       <div class="overlay"></div>
       <div class="content">
         <h3>DESIGNED TO PERFORM</h3>
@@ -168,8 +139,7 @@
         </div>
       </div>
     </div>
-
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80');">
+    <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-9.webp');">
       <div class="overlay"></div>
       <div class="content">
         <h3>PURE INNOVATION</h3>
@@ -180,8 +150,7 @@
         </div>
       </div>
     </div>
-
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2ab94?auto=format&fit=crop&w=1600&q=80');">
+    <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-10.webp');">
       <div class="overlay"></div>
       <div class="content">
         <h3>THE FUTURE IS BRIGHT</h3>
@@ -192,37 +161,77 @@
         </div>
       </div>
     </div>
-
     <div class="counter">1 / 4</div>
   </div>
 
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const counter = document.querySelector('.counter');
-    let index = 0;
-    let scrolling = false;
+<script>
+const slides = document.querySelectorAll('.slide');
+const counter = document.querySelector('.counter');
+let current = 0;
+let animating = false;
 
-    function showSlide(i) {
-      slides.forEach((slide, idx) => {
-        slide.classList.remove('active', 'prev');
-        if (idx === i) slide.classList.add('active');
-        else if (idx < i) slide.classList.add('prev');
-      });
-      counter.textContent = `${i + 1} / ${slides.length}`;
-    }
+gsap.set(slides[0], { y: 0, opacity: 1 });
+gsap.to(slides[0].querySelector(".content"), { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
 
-    window.addEventListener('wheel', (e) => {
-      if (scrolling) return;
-      scrolling = true;
-      if (e.deltaY > 0) {
-        index = (index + 1) % slides.length;
+function showSlide(next, direction) {
+  if (animating || next === current) return;
+  animating = true;
+
+  const currentSlide = slides[current];
+  const nextSlide = slides[next];
+  const dir = direction === "up" ? "-100%" : "100%";
+  const fromDir = direction === "up" ? "100%" : "-100%";
+
+  gsap.set(nextSlide, { y: dir, opacity: 1 });
+
+  const tl = gsap.timeline({
+    defaults: { ease: "power3.inOut", duration: 1.2 },
+    onComplete: () => {
+      current = next;
+      animating = false;
+
+      // enable page scroll only when last slide is reached
+      if (current === slides.length - 1) {
+        document.body.style.overflowY = "auto";
       } else {
-        index = (index - 1 + slides.length) % slides.length;
+        document.body.style.overflowY = "hidden";
       }
-      showSlide(index);
-      setTimeout(() => scrolling = false, 1300);
-    });
-  </script>
+    }
+  });
+
+  tl.to(currentSlide.querySelector(".content"), { opacity: 0, y: direction === "up" ? 60 : -60 }, 0)
+    .to(currentSlide, { y: fromDir, scale: 1.02 }, 0)
+    .to(nextSlide, { y: "0%" }, 0)
+    .fromTo(nextSlide.querySelector(".content"),
+      { opacity: 0, y: direction === "up" ? -60 : 60 },
+      { opacity: 1, y: 0 },
+      0
+    );
+
+  gsap.to(counter, {
+    textContent: `${next + 1} / ${slides.length}`,
+    duration: 0.6,
+    snap: "textContent",
+    ease: "power1.out"
+  });
+}
+
+function wheelHandler(e) {
+  if (animating) return;
+
+  const dir = e.deltaY > 0 ? "down" : "up";
+  let next = current + (dir === "down" ? 1 : -1);
+
+  // stop at ends (no looping)
+  if (next < 0 || next >= slides.length) return;
+
+  showSlide(next, dir);
+}
+
+window.addEventListener("wheel", wheelHandler);
+document.body.style.overflowY = "hidden";
+</script>
+
 
 </body>
 </html>

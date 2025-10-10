@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Zoom-In Product Animation</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #ebe5e5;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product {
+    position: absolute;
+    width: 250px; /* initial small size */
+    height: auto;
+    transform: translateX(100vw) scale(0.2); /* start far right & small */
+    opacity: 0;
+    transition: transform 3s ease-in-out, opacity 2s ease-in-out;
+  }
+</style>
+</head>
+<body>
+
+<img src="assets/img/2222.png" class="product">
+<img src="assets/img/11.png" class="product">
+<img src="assets/img/12.png" class="product">
+<img src="assets/img/13.png" class="product">
+<img src="https://images.unsplash.com/photo-1508923567004-3a6b8004f3d3" class="product">
+<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216" class="product">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="product">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="product">
+
+<script>
+const products = document.querySelectorAll('.product');
+
+function animateProduct(index) {
+  const product = products[index];
+
+  // Step 1: Move from right → center with big zoom
+  product.style.transform = 'translateX(0) scale(1.5)'; // zoom bigger
+  product.style.opacity = 1;
+
+  // Step 2: Pause at center for 2s
+  setTimeout(() => {
+    // Step 3: Exit left while shrinking
+    product.style.transform = 'translateX(-150vw) scale(0.3)';
+    product.style.opacity = 0;
+  }, 3000); // pause at center longer
+
+  // Step 4: Animate next product
+  setTimeout(() => {
+    const nextIndex = (index + 1) % products.length;
+    animateProduct(nextIndex);
+  }, 5000); // total duration before next
+}
+
+// Start with first product
+animateProduct(0);
+</script>
+
+</body>
+</html>
