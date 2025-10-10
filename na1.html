@@ -1,150 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Porsche Hero Section</title>
-<style>
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lighting Temperature Banner</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #0a0a0a, #111);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
 
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+    .lighting-banner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+      text-align: center;
+      padding: 40px;
+    }
 
-/* Fullscreen background */
-.hero-section .bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: all 0.6s ease;
-  z-index: 0;
-}
+    .lamp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
 
-/* Left thumbnails */
-.hero-section .side-menu {
-  position: absolute;
-  top: 50%;
-  left: 30px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 10;
-}
-.hero-section .side-menu img {
-  width: 80px;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.hero-section .side-menu img:hover {
-  opacity: 1;
-  transform: scale(1.15);
-}
+    .lamp::before {
+      content: "";
+      width: 2px;
+      height: 60px;
+      background: #555;
+      position: absolute;
+      top: -60px;
+    }
 
-/* Page index */
-.hero-section .page-index {
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
-  font-size: 50px;
-  color: rgba(255,255,255,0.5);
-  z-index: 10;
-}
+    .light-head {
+      width: 60px;
+      height: 35px;
+      background: #ccc;
+      border-radius: 30px 30px 5px 5px;
+      position: relative;
+      z-index: 2;
+    }
 
-/* Text overlay */
-.hero-section .text-overlay {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 80px;
-  font-weight: 300;
-  text-align: center;
-  letter-spacing: 5px;
-  z-index: 10;
-  user-select: none;
-  transition: all 0.5s ease;
-  opacity: 1;
-}
-</style>
+    .glow {
+      position: absolute;
+      top: 35px;
+      width: 80px;
+      height: 200px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.85;
+      animation: pulse 3s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .label {
+      margin-top: 250px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Lighting colors */
+    .k1000  .glow { background: #ff3c00; }
+    .k2000  .glow { background: #ff8000; }
+    .k3000  .glow { background: #ffb347; }
+    .k4000  .glow { background: #ffd580; }
+    .k5000  .glow { background: #fff4e6; }
+    .k6000  .glow { background: #e6f2ff; }
+    .k7000  .glow { background: #cce0ff; }
+    .k8000  .glow { background: #99ccff; }
+    .k9000  .glow { background: #6699ff; }
+    .k10000 .glow { background: #3366ff; }
+  </style>
 </head>
 <body>
-
-<div class="hero-section">
-  <!-- Fullscreen background -->
-  <div class="bg-image" style="background-image: url('assets/img/13.png');"></div>
-
-  <!-- Text overlay -->
-  <div class="text-overlay">COBS</div>
-
-  <!-- Thumbnails -->
-  <div class="side-menu">
-    <img src="assets/img/13.png" data-img="assets/img/13.png" data-text="COBS" data-index="1">
-    <img src="assets/img/15.png" data-img="assets/img/15.png" data-text="TRACK" data-index="2">
-    <img src="assets/img/17.png" data-img="assets/img/17.png" data-text="LIGHT" data-index="3">
-    <img src="assets/img/18.png" data-img="assets/img/18.png" data-text="COBS" data-index="4">
+  <div class="lighting-banner">
+    <div class="lamp k1000"><div class="light-head"></div><div class="glow"></div><div class="label">1000 K</div></div>
+    <div class="lamp k2000"><div class="light-head"></div><div class="glow"></div><div class="label">2000 K</div></div>
+    <div class="lamp k3000"><div class="light-head"></div><div class="glow"></div><div class="label">3000 K</div></div>
+    <div class="lamp k4000"><div class="light-head"></div><div class="glow"></div><div class="label">4000 K</div></div>
+    <div class="lamp k5000"><div class="light-head"></div><div class="glow"></div><div class="label">5000 K</div></div>
+    <div class="lamp k6000"><div class="light-head"></div><div class="glow"></div><div class="label">6000 K</div></div>
+    <div class="lamp k7000"><div class="light-head"></div><div class="glow"></div><div class="label">7000 K</div></div>
+    <div class="lamp k8000"><div class="light-head"></div><div class="glow"></div><div class="label">8000 K</div></div>
+    <div class="lamp k9000"><div class="light-head"></div><div class="glow"></div><div class="label">9000 K</div></div>
+    <div class="lamp k10000"><div class="light-head"></div><div class="glow"></div><div class="label">10000 K</div></div>
   </div>
-
-  <!-- Page index -->
-  <div class="page-index">01</div>
-</div>
-
-<script>
-const hero = document.querySelector('.hero-section');
-const thumbnails = hero.querySelectorAll('.side-menu img');
-const bgImage = hero.querySelector('.bg-image');
-const pageIndex = hero.querySelector('.page-index');
-const textOverlay = hero.querySelector('.text-overlay');
-
-thumbnails.forEach(thumb => {
-  thumb.addEventListener('mouseenter', () => {
-    const index = thumb.getAttribute('data-index').padStart(2,'0');
-    pageIndex.textContent = index;
-
-    const newText = thumb.getAttribute('data-text');
-
-    // Change fullscreen background
-    bgImage.style.backgroundImage = `url('${thumb.getAttribute('data-img')}')`;
-
-    // Slide out text to left
-    textOverlay.style.transform = 'translate(-60%, -50%)';
-    textOverlay.style.opacity = 0;
-
-    // After short delay, change text and slide in smoothly
-    setTimeout(() => {
-      textOverlay.textContent = newText;
-      textOverlay.style.transform = 'translate(-50%, -50%)';
-      textOverlay.style.opacity = 1;
-    }, 200);
-  });
-});
-</script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
