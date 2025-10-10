@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Gallery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #fff; }
+    .category-toggle svg { transition: transform 0.3s ease; }
+    .rotate-180 { transform: rotate(180deg); }
+    .product-card { background: #f4f4f4; border-radius: 10px; position: relative; cursor: pointer; overflow: hidden; text-align: center; }
+    .product-card img { width: 100%; height: 400px; object-fit: cover; transition: opacity 0.4s ease, transform 0.4s ease; }
+    .product-card .alt-img { opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    .product-card:hover .alt-img { opacity: 1; transform: scale(1.05); }
+    .product-card:hover .main-img { opacity: 0; transform: scale(1.05); }
+    .badge-novedad { position: absolute; top: 10px; right: 10px; background: #fff; padding: 4px 8px; border-radius: 5px; font-size: 0.7rem; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .product-name { margin-top: 10px; font-size: 0.9rem; font-weight: 500; color: #333; }
+    .toggle-btn { display: flex; align-items: center; border-radius: 30px; border: 1px solid #ddd; padding: 6px 12px; gap: 10px; cursor: pointer; overflow: hidden; width: 160px; transition: all 0.3s ease; }
+    .toggle-text { transition: all 0.4s ease; }
+    .toggle-btn.active { flex-direction: row-reverse; }
+    .toggle-icon { transition: all 0.4s ease; }
+    #categoryList li a { text-decoration: none; border-bottom: 1px solid transparent; display: block; padding: 5px 0; color: #000; }
+    #categoryList li a:hover { border-bottom: 1px solid #000; }
+    .active-category { text-decoration: underline; font-weight: bold; }
+  </style>
+</head>
+<body class="p-5">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <h1 class="fs-2 fw-light mb-4" id="categoryHeading">Suspension</h1>
+      <button class="btn w-100 d-flex justify-content-between align-items-center category-toggle border-bottom mb-3" id="catToggle">
+        <span>CATEGORÍA</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5L10 13.5L15 8.5"/></svg>
+      </button>
+      <ul class="list-unstyled ps-2" id="categoryList">
+        <li><a href="all.html" class="active-category">All</a></li>
+        <li><a href="ceiling-recessed.html">Ceiling Recessed</a></li>
+        <li><a href="surface.html">Surface</a></li>
+        <li><a href="suspension.html">Suspension</a></li>
+        <li><a href="wall.html">Wall</a></li>
+        <li><a href="table-floor.html">Table & Floor</a></li>
+        <li><a href="track-lights.html">Track Lights</a></li>
+        <li><a href="custom-systems.html">Custom Systems</a></li>
+        <li><a href="outdoor.html">Outdoor</a></li>
+        <li><a href="lamps.html">Lamps</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <div class="d-flex justify-content-end mb-4">
+        <button class="toggle-btn" id="viewToggle">
+          <span class="toggle-text" id="toggleText">Default View</span>
+          <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+
+      <div class="row g-4" id="productGrid">  </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const products = [
+    { id: 1, title: 'Product 1', default: 'assets/img/portfolio/portfolio-8.webp', hover: 'assets/img/portfolio/portfolio-9.webp' },
+    { id: 2, title: 'Product 2', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 3, title: 'Product 3', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 4, title: 'Product 4', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 5, title: 'Product 5', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 6, title: 'Product 6', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 7, title: 'Product 7', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 8, title: 'Product 8', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' },
+    { id: 9, title: 'Product 9', default: 'assets/img/person/person-f-5.webp', hover: 'assets/img/person/person-f-12.webp' }
+  ];
+
+  let viewSet = 0;
+  const grid = document.getElementById('productGrid');
+
+  function renderGrid() {
+    grid.innerHTML = '';
+    products.forEach(p => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-4 col-md-6';
+      const card = document.createElement('div');
+      card.className = 'product-card p-0';
+      card.innerHTML = `
+        <img src="${viewSet === 0 ? p.default : p.hover}" class="main-img" alt="${p.title}">
+        <img src="${viewSet === 0 ? p.hover : p.default}" class="alt-img" alt="${p.title}">
+        ${p.id % 4 === 0 ? '<div class="badge-novedad">NOVEDAD</div>' : ''}
+      `;
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'product-name';
+      nameDiv.innerText = p.title;
+      col.appendChild(card);
+      col.appendChild(nameDiv);
+      grid.appendChild(col);
+    });
+  }
+
+  renderGrid();
+
+  const viewToggle = document.getElementById('viewToggle');
+  const toggleText = document.getElementById('toggleText');
+
+  viewToggle.addEventListener('click', () => {
+    viewSet = 1 - viewSet;
+    viewToggle.classList.toggle('active');
+    toggleText.textContent = viewSet === 0 ? 'Default View' : 'Alternate View';
+    renderGrid();
+  });
+
+  document.getElementById('catToggle').addEventListener('click', () => {
+    document.getElementById('categoryList').classList.toggle('d-none');
+    document.querySelector('#catToggle svg').classList.toggle('rotate-180');
+  });
+
+  document.querySelectorAll('#categoryList a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('#categoryList a').forEach(l => l.classList.remove('active-category'));
+      link.classList.add('active-category');
+      document.getElementById('categoryHeading').innerText = link.innerText;
+      window.location.href = link.href; // Navigate to page
+    });
+  });
+</script>
+
+</body>
+</html>
