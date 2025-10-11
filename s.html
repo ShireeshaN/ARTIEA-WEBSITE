@@ -1,236 +1,158 @@
-<section class="hero">
-  <div class="hero-content">
-    <h1>Artiea</h1>
-    <p>Italian Premium Luxury Lighting</p>
-    <a href="#vision" class="btn">Discover More</a>
+<!-- PRODUCTS SECTION -->
+<section class="section">
+  <h2>PRODUCTS</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab" onclick="showProducts('COB')">COB</div>
+    <div class="tab" onclick="showProducts('LASERBLADES')">LASER BLADES</div>
+    <div class="tab" onclick="showProducts('WALL WASHERS')">WALL WASHERS</div>
+    <div class="tab" onclick="showProducts('MAGNETIC')">MAGNETIC TRACK</div>
+    <div class="tab active" onclick="showProducts('INDUSTRY')">INDUSTRY</div>
   </div>
-  <div class="glow"></div>
+
+  <!-- Product Grid -->
+  <div id="product-grid" class="product-grid"></div>
 </section>
 
+<!-- Products Section CSS -->
 <style>
-.hero {
-  position: relative;
-  height: 100vh;
-  background: #111;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  text-align: center;
-}
+  .section {
+    text-align: center;
+    padding: 80px 20px;
+    background: #f9f9f9;
+    color: #222;
+    font-family: "Poppins", sans-serif;
+  }
 
-.hero h1 {
-  font-size: 4rem;
-  letter-spacing: 4px;
-  margin-bottom: 10px;
-  animation: fadeIn 2s ease-out forwards;
-}
+  .section h2 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    font-weight: 600;
+  }
 
-.hero p {
-  font-size: 1.5rem;
-  opacity: 0.8;
-  animation: fadeIn 2s ease-out 0.5s forwards;
-}
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+  }
 
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: 2px solid #fff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 50px;
-  transition: all 0.3s;
-}
+  .tab {
+    padding: 15px 40px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+  }
 
-.btn:hover {
-  background: #fff;
-  color: #111;
-}
+  .tab.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+  }
 
-.glow {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #ff6b6b, #f5f5f5, transparent);
-  top: 20%;
-  left: 30%;
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: glow 8s ease-in-out infinite;
-}
+  .tab:hover {
+    background: #eee;
+  }
 
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(20px);}
-  100% { opacity: 1; transform: translateY(0);}
-}
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-@keyframes glow {
-  0%, 100% { transform: translateY(0px) scale(1);}
-  50% { transform: translateY(20px) scale(1.1);}
-}
+  .product {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
 
-/* Responsive */
-@media (max-width: 768px){
-  .hero h1 { font-size: 3rem; }
-  .hero p { font-size: 1.2rem; }
-  .glow { width: 250px; height: 250px; }
-}
+  .product.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product img {
+    max-height: 200px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .product img:hover {
+    transform: scale(1.08);
+  }
+
+  .product-name {
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: #444;
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .tab {
+      padding: 12px 25px;
+      font-size: 13px;
+    }
+    .section h2 {
+      font-size: 32px;
+    }
+  }
 </style>
 
+<!-- Products Section JS -->
+<script>
+  const products = {
+    NEW: [],
+    INDOOR: [],
+    OUTDOOR: [],
+    SYNC: [],
+    INDUSTRY: [
+      { name: "HIGH-BAY", image: "images/highbay.png" },
+      { name: "TUBE", image: "images/tube.png" },
+      { name: "SOLID TUBE", image: "images/solidtube.png" },
+      { name: "DOWNLIGHT", image: "images/downlight.png" },
+      { name: "FLOOD LIGHT", image: "images/floodlight.png" },
+    ],
+  };
 
-<section id="vision" class="section">
-  <div class="container">
-    <h2>Our Vision</h2>
-    <p>To illuminate the world with timeless elegance and cutting-edge Italian design, crafting lighting experiences that transcend spaces and inspire lifestyles globally.</p>
-  </div>
-</section>
+  const productGrid = document.getElementById("product-grid");
+  const tabs = document.querySelectorAll(".tab");
 
-<style>
-.section {
-  padding: 100px 20px;
-  text-align: center;
-  background: #fff;
-  color: #111;
-}
+  function showProducts(category) {
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    document
+      .querySelector(`.tab[onclick="showProducts('${category}')"]`)
+      .classList.add("active");
 
-.section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
+    productGrid.innerHTML = "";
 
-.section p {
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.8;
-}
-</style>
+    const items = products[category];
+    if (items.length === 0) {
+      productGrid.innerHTML =
+        '<p style="grid-column: 1 / -1; color: #777;">No products in this category.</p>';
+      return;
+    }
 
+    items.forEach((p, i) => {
+      const div = document.createElement("div");
+      div.classList.add("product");
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" />
+        <div class="product-name">${p.name}</div>
+      `;
+      productGrid.appendChild(div);
+      setTimeout(() => div.classList.add("show"), 100 * i);
+    });
+  }
 
-<section id="mission" class="section mission">
-  <h2>Our Mission</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Design Excellence</h3>
-      <p>Delivering cutting-edge Italian design with meticulous attention to detail and premium craftsmanship.</p>
-    </div>
-    <div class="card">
-      <h3>Global Inspiration</h3>
-      <p>Creating lighting that resonates with international luxury lifestyles, bringing elegance to every corner of the world.</p>
-    </div>
-    <div class="card">
-      <h3>Sustainability</h3>
-      <p>Innovating with responsibility, combining luxury with environmental consciousness in every design.</p>
-    </div>
-  </div>
-</section>
-
-<style>
-.mission .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.card {
-  background: #f7f7f7;
-  padding: 30px;
-  border-radius: 20px;
-  width: 300px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  transition: transform 0.5s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.card p {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-</style>
-
-
-<section class="section styles">
-  <h2>Signature Styles</h2>
-  <div class="style-cards">
-    <div class="style-card">
-      <img src="light1.jpg" alt="Aurora Pendant">
-      <div class="overlay"><h3>Aurora Pendant</h3></div>
-    </div>
-    <div class="style-card">
-      <img src="light2.jpg" alt="Luminara Chandelier">
-      <div class="overlay"><h3>Luminara Chandelier</h3></div>
-    </div>
-    <div class="style-card">
-      <img src="light3.jpg" alt="Solare Floor Lamp">
-      <div class="overlay"><h3>Solare Floor Lamp</h3></div>
-    </div>
-  </div>
-</section>
-
-<style>
-.style-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.style-card {
-  position: relative;
-  width: 300px;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.7s;
-}
-
-.style-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s;
-}
-
-.style-card:hover img {
-  transform: scale(1.1);
-}
-
-.overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 30%;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: #fff;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 15px;
-  opacity: 0;
-  transition: opacity 0.7s;
-}
-
-.style-card:hover .overlay {
-  opacity: 1;
-}
-
-.overlay h3 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-</style>
+  showProducts("INDUSTRY");
+</script>
