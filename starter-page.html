@@ -670,12 +670,525 @@ images.forEach((img, i) => {
 
 
 
+4th design 
+
+
+<section class="slider">
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-7.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>A NEW DIMENSION</h3>
+      <h1>Arkoslight,<br>Feel the Light</h1>
+      <div class="buttons">
+        <button class="btn">View More</button>
+        <button class="btn">Immerse Yourself</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-8.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>DESIGNED TO PERFORM</h3>
+      <h1>Light That Shapes<br>Architecture</h1>
+      <div class="buttons">
+        <button class="btn">Explore</button>
+        <button class="btn">Discover More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-9.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>PURE INNOVATION</h3>
+      <h1>Precision in Every<br>Beam of Light</h1>
+      <div class="buttons">
+        <button class="btn">View Projects</button>
+        <button class="btn">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-10.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>THE FUTURE IS BRIGHT</h3>
+      <h1>Illuminate Tomorrow<br>With Purpose</h1>
+      <div class="buttons">
+        <button class="btn">Contact</button>
+        <button class="btn">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="counter">1 / 4</div>
+
+  <style>
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      background: #000;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(100%);
+      will-change: transform, opacity;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 20px;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+
+    h3 {
+      font-size: 1rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: #e0e0e0;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 8vw;
+      font-weight: 500;
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+      margin-bottom: 3rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    .counter {
+      position: absolute;
+      right: 60px;
+      bottom: 40px;
+      font-size: 1rem;
+      color: #ccc;
+      letter-spacing: 2px;
+      z-index: 10;
+      font-weight: 300;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 11vw;
+      }
+      .btn {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const slides = document.querySelectorAll('.slider .slide');
+    const counter = document.querySelector('.slider .counter');
+    let current = 0;
+    let animating = false;
+
+    gsap.set(slides[0], { y: 0, opacity: 1 });
+    gsap.to(slides[0].querySelector(".content"), { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+
+    function showSlide(next, direction) {
+      if (animating || next === current) return;
+      animating = true;
+
+      const currentSlide = slides[current];
+      const nextSlide = slides[next];
+      const dir = direction === "up" ? "-100%" : "100%";
+      const fromDir = direction === "up" ? "100%" : "-100%";
+
+      gsap.set(nextSlide, { y: dir, opacity: 1 });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.inOut", duration: 1.2 },
+        onComplete: () => {
+          current = next;
+          animating = false;
+          if (current === slides.length - 1) {
+            document.body.style.overflowY = "auto";
+          } else {
+            document.body.style.overflowY = "hidden";
+          }
+        }
+      });
+
+      tl.to(currentSlide.querySelector(".content"), { opacity: 0, y: direction === "up" ? 60 : -60 }, 0)
+        .to(currentSlide, { y: fromDir, scale: 1.02 }, 0)
+        .to(nextSlide, { y: "0%" }, 0)
+        .fromTo(nextSlide.querySelector(".content"),
+          { opacity: 0, y: direction === "up" ? -60 : 60 },
+          { opacity: 1, y: 0 },
+          0
+        );
+
+      gsap.to(counter, {
+        textContent: `${next + 1} / ${slides.length}`,
+        duration: 0.6,
+        snap: "textContent",
+        ease: "power1.out"
+      });
+    }
+
+    function wheelHandler(e) {
+      if (animating) return;
+
+      const dir = e.deltaY > 0 ? "down" : "up";
+      let next = current + (dir === "down" ? 1 : -1);
+
+      if (next < 0 || next >= slides.length) return;
+
+      showSlide(next, dir);
+    }
+
+    window.addEventListener("wheel", wheelHandler);
+    document.body.style.overflowY = "hidden";
+  </script>
+</section>
+
+4th design product section 
+
+
+<!-- PRODUCTS SECTION -->
+<section class="section">
+  <h2>PRODUCTS</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab" onclick="showProducts('COB')">COB</div>
+    <div class="tab" onclick="showProducts('LASERBLADES')">LASER BLADES</div>
+    <div class="tab" onclick="showProducts('WALL WASHERS')">WALL WASHERS</div>
+    <div class="tab" onclick="showProducts('MAGNETIC')">MAGNETIC TRACK</div>
+    <div class="tab active" onclick="showProducts('INDUSTRY')">INDUSTRY</div>
+  </div>
+
+  <!-- Product Grid -->
+  <div id="product-grid" class="product-grid"></div>
+</section>
+
+<!-- Products Section CSS -->
+<style>
+  .section {
+    text-align: center;
+    padding: 80px 20px;
+    background: #f9f9f9;
+    color: #222;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .section h2 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    font-weight: 600;
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+  }
+
+  .tab {
+    padding: 15px 40px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .tab.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+  .tab:hover {
+    background: #eee;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+
+  .product.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product img {
+    max-height: 200px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .product img:hover {
+    transform: scale(1.08);
+  }
+
+  .product-name {
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: #444;
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .tab {
+      padding: 12px 25px;
+      font-size: 13px;
+    }
+    .section h2 {
+      font-size: 32px;
+    }
+  }
+</style>
+
+<!-- Products Section JS -->
+<script>
+  const products = {
+    NEW: [],
+    INDOOR: [],
+    OUTDOOR: [],
+    SYNC: [],
+    INDUSTRY: [
+      { name: "HIGH-BAY", image: "images/highbay.png" },
+      { name: "TUBE", image: "images/tube.png" },
+      { name: "SOLID TUBE", image: "images/solidtube.png" },
+      { name: "DOWNLIGHT", image: "images/downlight.png" },
+      { name: "FLOOD LIGHT", image: "images/floodlight.png" },
+    ],
+  };
+
+  const productGrid = document.getElementById("product-grid");
+  const tabs = document.querySelectorAll(".tab");
+
+  function showProducts(category) {
+    tabs.forEach((tab) => tab.classList.remove("active"));
+    document
+      .querySelector(`.tab[onclick="showProducts('${category}')"]`)
+      .classList.add("active");
+
+    productGrid.innerHTML = "";
+
+    const items = products[category];
+    if (items.length === 0) {
+      productGrid.innerHTML =
+        '<p style="grid-column: 1 / -1; color: #777;">No products in this category.</p>';
+      return;
+    }
+
+    items.forEach((p, i) => {
+      const div = document.createElement("div");
+      div.classList.add("product");
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" />
+        <div class="product-name">${p.name}</div>
+      `;
+      productGrid.appendChild(div);
+      setTimeout(() => div.classList.add("show"), 100 * i);
+    });
+  }
+
+  showProducts("INDUSTRY");
+</script>
 
 
 
 
+5th design
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dani Scroll Demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: sans-serif;
+  }
+
+  .hero-section {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .hero-heading {
+    position: sticky;
+    top: 50px;
+    font-size: 4rem;
+    z-index: 10;
+    text-align: center;
+    color: #111;
+  }
+
+  .hero-images {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-images img {
+    position: absolute;
+    height: 60%;      /* initially vertical */
+    width: auto;
+    opacity: 0;
+    transform-origin: center center;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+
+  .next-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background: #e9ecef;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero-section" id="hero">
+  <h1 class="hero-heading">Connecting</h1>
+  <div class="hero-images">
+    <img src="https://picsum.photos/id/1015/600/900" class="hero-img">
+    <img src="https://picsum.photos/id/1025/600/900" class="hero-img">
+    <img src="https://picsum.photos/id/1035/600/900" class="hero-img">
+  </div>
+</section>
+
+<section class="next-section">
+  Normal scroll resumes here ⬇️
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const images = gsap.utils.toArray(".hero-img");
+
+// initial state
+gsap.set(images, {opacity:0, scale:0.8, x:0});
+
+// calculate dynamic scroll height
+const scrollHeight = window.innerHeight * images.length * 1.5;
+
+// timeline
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#hero",
+    start: "top top",
+    end: scrollHeight,
+    scrub: true,
+    pin: true
+  }
+});
+
+// animate each image
+images.forEach((img, i) => {
+  tl.to(img, {
+    opacity:1,
+    scale:1.2,
+    width: "50%",     // vertical -> wider height
+    duration: 1.2,
+    ease:"power2.out"
+  })
+  .to(img, {
+    xPercent: -50,     // slide out left
+    opacity:0,
+    duration: 1.2,
+    ease:"power2.inOut"
+  }, "+=0.3");          // slight delay before next
+});
+</script>
+
+</body>
+</html>
 
 
 
