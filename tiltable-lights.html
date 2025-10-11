@@ -162,7 +162,7 @@
       card.innerHTML = `
         <img src="${viewSet === 0 ? p.default : p.hover}" class="main-img" alt="${p.title}">
         <img src="${viewSet === 0 ? p.hover : p.default}" class="alt-img" alt="${p.title}">
-        ${p.id % 4 === 0 ? '<div class="badge-novedad">NOVEDAD</div>' : ''}
+        ${p.id % 4 === 0 ? '' : ''}
       `;
       const nameDiv = document.createElement('div');
       nameDiv.className = 'product-name';
