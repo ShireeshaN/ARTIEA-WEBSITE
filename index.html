@@ -156,86 +156,7 @@
   </div>
 </section>
 
-<!-- Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
-<script>
-// ================== Swiper ==================
-const swiper = new Swiper(".mySwiper", {
-  loop: true,
-  pagination: { el: ".swiper-pagination", clickable: true },
-  autoplay: { delay: 4000, disableOnInteraction: false },
-  effect: "slide",
-  on: {
-    slideChangeTransitionStart: () => {
-      const prev = swiper.slides[swiper.previousIndex];
-      gsap.to(prev.querySelector(".slide-info"), { x: -50, opacity: 0, duration: 0.5 });
-      gsap.to(prev.querySelector(".three-canvas"), { scale: 0.9, opacity: 0, duration: 0.5 });
-    },
-    slideChangeTransitionEnd: () => {
-      const active = swiper.slides[swiper.activeIndex];
-      gsap.fromTo(active.querySelector(".slide-info"), { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" });
-      gsap.fromTo(active.querySelector(".three-canvas"), { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: "power2.out" });
-    }
-  }
-});
-
-
-// ================== Three.js 3D Animations ==================
-const canvasIds = ["canvas1","canvas2","canvas3","canvas4","canvas5"];
-canvasIds.forEach((id, index) => {
-  const canvas = document.getElementById(id);
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  camera.position.z = 3;
-
-  const light = new THREE.PointLight(0xffffff,1);
-  light.position.set(5,5,5);
-  scene.add(light);
-  scene.add(new THREE.AmbientLight(0xffffff,0.3));
-
-  let mesh;
-  const mat = new THREE.MeshStandardMaterial({ color: 0x6be4d8, roughness:0.3, metalness:0.6 });
-  switch(index){
-    case 0: mesh = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), mat); break;
-    case 1: mesh = new THREE.Mesh(new THREE.TorusGeometry(0.7,0.25,16,100), mat); break;
-    case 2: mesh = new THREE.Mesh(new THREE.SphereGeometry(0.8,64,64), mat); break;
-    case 3: mesh = new THREE.Mesh(new THREE.RingGeometry(0.6,0.9,64), mat); break;
-    case 4: mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(0.9,1), mat); break;
-  }
-  scene.add(mesh);
-
-  gsap.to(mesh.rotation, {
-    x: "+=6.28",
-    y: "+=6.28",
-    repeat: -1,
-    duration: 20,
-    ease: "none"
-  });
-
-  function animate(){ requestAnimationFrame(animate); renderer.render(scene, camera); }
-  animate();
-});
-
-// ================== Handle Resize ==================
-window.addEventListener("resize", () => {
-  canvasIds.forEach(id => {
-    const canvas = document.getElementById(id);
-    const renderer = canvas._renderer; // store renderer in dom element for resize
-    if(renderer){
-      const camera = renderer.camera;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-    }
-  });
-});
-</script>
 
 <style>
 .hero-3d { min-height:100vh; display:flex; align-items:center; justify-content:center; background:#0b0c10; padding:60px 0; }
@@ -932,6 +853,182 @@ startAutoChange();
 
 
     
+
+
+<!-- About Section -->
+<section id="about" class="section">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>Some content about your company goes here...</p>
+  </div>
+</section>
+
+<!-- Slider Section (after About) -->
+<section class="slider" id="sliderSection">
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-7.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>A NEW DIMENSION</h3>
+      <h1>Arkoslight,<br>Feel the Light</h1>
+      <div class="buttons">
+        <button class="btn">View More</button>
+        <button class="btn">Immerse Yourself</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-8.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>DESIGNED TO PERFORM</h3>
+      <h1>Light That Shapes<br>Architecture</h1>
+      <div class="buttons">
+        <button class="btn">Explore</button>
+        <button class="btn">Discover More</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-9.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>PURE INNOVATION</h3>
+      <h1>Precision in Every<br>Beam of Light</h1>
+      <div class="buttons">
+        <button class="btn">View Projects</button>
+        <button class="btn">Learn More</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-10.webp');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h3>THE FUTURE IS BRIGHT</h3>
+      <h1>Illuminate Tomorrow<br>With Purpose</h1>
+      <div class="buttons">
+        <button class="btn">Contact</button>
+        <button class="btn">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="counter">1 / 4</div>
+</section>
+
+<!-- Slider CSS -->
+<style>
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  background: #000;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(100%);
+  will-change: transform, opacity;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+.content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  max-width: 1000px;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(60px);
+}
+h3 { font-size: 1rem; letter-spacing: 6px; text-transform: uppercase; font-weight: 300; color: #e0e0e0; margin-bottom: 1.5rem; }
+h1 { font-size: 8vw; font-weight: 500; line-height: 1.05; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,0.6); margin-bottom: 3rem; }
+.buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; }
+.btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color:#fff; padding:0.9rem 2rem; font-size:1.1rem; border-radius:50px; backdrop-filter: blur(8px); cursor:pointer; transition: all 0.3s ease; font-weight:500; }
+.btn:hover { background:#fff; color:#000; transform: scale(1.05); }
+.counter { position: absolute; right: 60px; bottom: 40px; font-size:1rem; color:#ccc; letter-spacing:2px; z-index:10; font-weight:300; }
+@media (max-width:768px){ h1 { font-size:11vw; } .btn { padding:0.7rem 1.4rem; font-size:0.95rem; } }
+</style>
+
+<!-- GSAP Slider JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+const sliderSection = document.getElementById("sliderSection");
+const slides = sliderSection.querySelectorAll(".slide");
+const counter = sliderSection.querySelector(".counter");
+let current = 0;
+let animating = false;
+
+// Set initial slide
+gsap.set(slides[0], { y:0, opacity:1 });
+gsap.to(slides[0].querySelector(".content"), { opacity:1, y:0, duration:1, ease:"power3.out" });
+
+// Check if slider is in viewport
+function isSliderInView() {
+  const rect = sliderSection.getBoundingClientRect();
+  return rect.top <= window.innerHeight && rect.bottom >= 0;
+}
+
+// Show slide
+function showSlide(next, direction) {
+  if(animating || next === current) return;
+  animating = true;
+
+  const currentSlide = slides[current];
+  const nextSlide = slides[next];
+  const dir = direction === "up" ? "-100%" : "100%";
+  const fromDir = direction === "up" ? "100%" : "-100%";
+
+  gsap.set(nextSlide, { y:dir, opacity:1 });
+
+  const tl = gsap.timeline({
+    defaults: { ease:"power3.inOut", duration:1.2 },
+    onComplete: () => { current = next; animating = false; }
+  });
+
+  tl.to(currentSlide.querySelector(".content"), { opacity:0, y: direction==="up"?60:-60 },0)
+    .to(currentSlide,{y:fromDir, scale:1.02},0)
+    .to(nextSlide,{y:"0%"},0)
+    .fromTo(nextSlide.querySelector(".content"), {opacity:0, y:direction==="up"?-60:60}, {opacity:1, y:0},0);
+
+  gsap.to(counter,{ textContent:`${next+1} / ${slides.length}`, duration:0.6, snap:"textContent", ease:"power1.out" });
+}
+
+// Wheel handler (only triggers when slider in view)
+function wheelHandler(e){
+  if(!isSliderInView() || animating) return;
+
+  const dir = e.deltaY > 0 ? "down" : "up";
+  let next = current + (dir==="down"?1:-1);
+
+  if(next<0 || next>=slides.length) return;
+  showSlide(next, dir);
+}
+
+window.addEventListener("wheel", wheelHandler);
+</script>
+
+
+
+
+
+
+
+
+
+
+    
+
     <!-- Skills Section -->
     <section id="skills" class="skills section">
 
@@ -2081,6 +2178,93 @@ setInterval(changeSlide, 8000);
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
+
+
+<!-- Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script>
+// ================== Swiper ==================
+const swiper = new Swiper(".mySwiper", {
+  loop: true,
+  pagination: { el: ".swiper-pagination", clickable: true },
+  autoplay: { delay: 4000, disableOnInteraction: false },
+  effect: "slide",
+  on: {
+    slideChangeTransitionStart: () => {
+      const prev = swiper.slides[swiper.previousIndex];
+      gsap.to(prev.querySelector(".slide-info"), { x: -50, opacity: 0, duration: 0.5 });
+      gsap.to(prev.querySelector(".three-canvas"), { scale: 0.9, opacity: 0, duration: 0.5 });
+    },
+    slideChangeTransitionEnd: () => {
+      const active = swiper.slides[swiper.activeIndex];
+      gsap.fromTo(active.querySelector(".slide-info"), { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" });
+      gsap.fromTo(active.querySelector(".three-canvas"), { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: "power2.out" });
+    }
+  }
+});
+
+
+// ================== Three.js 3D Animations ==================
+const canvasIds = ["canvas1","canvas2","canvas3","canvas4","canvas5"];
+canvasIds.forEach((id, index) => {
+  const canvas = document.getElementById(id);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  camera.position.z = 3;
+
+  const light = new THREE.PointLight(0xffffff,1);
+  light.position.set(5,5,5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff,0.3));
+
+  let mesh;
+  const mat = new THREE.MeshStandardMaterial({ color: 0x6be4d8, roughness:0.3, metalness:0.6 });
+  switch(index){
+    case 0: mesh = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), mat); break;
+    case 1: mesh = new THREE.Mesh(new THREE.TorusGeometry(0.7,0.25,16,100), mat); break;
+    case 2: mesh = new THREE.Mesh(new THREE.SphereGeometry(0.8,64,64), mat); break;
+    case 3: mesh = new THREE.Mesh(new THREE.RingGeometry(0.6,0.9,64), mat); break;
+    case 4: mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(0.9,1), mat); break;
+  }
+  scene.add(mesh);
+
+  gsap.to(mesh.rotation, {
+    x: "+=6.28",
+    y: "+=6.28",
+    repeat: -1,
+    duration: 20,
+    ease: "none"
+  });
+
+  function animate(){ requestAnimationFrame(animate); renderer.render(scene, camera); }
+  animate();
+});
+
+// ================== Handle Resize ==================
+window.addEventListener("resize", () => {
+  canvasIds.forEach(id => {
+    const canvas = document.getElementById(id);
+    const renderer = canvas._renderer; // store renderer in dom element for resize
+    if(renderer){
+      const camera = renderer.camera;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    }
+  });
+});
+</script>
 
 </body>
 
