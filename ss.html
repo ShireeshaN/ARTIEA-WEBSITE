@@ -1,135 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dani Scroll Demo</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    font-family: sans-serif;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Section</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
 
-  .hero-section {
-    height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: #fff;
-    overflow: hidden;
-  }
+    .section {
+      text-align: center;
+      padding: 80px 20px;
+    }
 
-  .hero-heading {
-    position: sticky;
-    top: 50px;
-    font-size: 4rem;
-    z-index: 10;
-    text-align: center;
-    color: #111;
-    margin-top: 50px;
-  }
+    .section h2 {
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+      font-weight: 600;
+    }
 
-  .hero-images {
-    position: relative;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-  }
+    /* Tabs */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 60px;
+    }
 
-  .hero-images img {
-    position: absolute;
-    height: 60%;   /* vertical start */
-    width: auto;
-    opacity: 0;
-    transform-origin: center center;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  }
+    .tab {
+      padding: 15px 40px;
+      border: 1px solid #aaa;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.2s ease-in-out;
+    }
 
-  .next-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    background: #e9ecef;
-    font-weight: 600;
-  }
-</style>
+    .tab.active {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    .tab:hover {
+      background: #eee;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    /* Fade-in animation */
+    .product.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product img {
+      max-height: 200px; /* Increased height */
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .product img:hover {
+      transform: scale(1.08);
+    }
+
+    .product-name {
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .tab {
+        padding: 12px 25px;
+        font-size: 13px;
+      }
+      .section h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <section class="section">
+    <h2>PRODUCTS</h2>
 
-<section class="hero-section" id="hero">
-  <h1 class="hero-heading">Connecting</h1>
-  <div class="hero-images">
-    <img src="https://picsum.photos/id/1015/600/900" class="hero-img">
-    <img src="https://picsum.photos/id/1025/600/900" class="hero-img">
-    <img src="https://picsum.photos/id/1035/600/900" class="hero-img">
-  </div>
-</section>
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab" onclick="showProducts('COB')">COB</div>
+      <div class="tab" onclick="showProducts('LASERBLADES')">LASER BLADES</div>
+      <div class="tab" onclick="showProducts('WALL WASHERS')">WALL WASHERS</div>
+      <div class="tab" onclick="showProducts('MAGNETIC')">MAGNETIC TRACK</div>
+      <div class="tab active" onclick="showProducts('INDUSTRY')">INDUSTRY</div>
+    </div>
 
-<section class="next-section">
-  Normal scroll resumes here ⬇️
-</section>
+    <!-- Product Grid -->
+    <div id="product-grid" class="product-grid"></div>
+  </section>
 
-<script>
-gsap.registerPlugin(ScrollTrigger);
+  <script>
+    const products = {
+      NEW: [],
+      INDOOR: [],
+      OUTDOOR: [],
+      SYNC: [],
+      INDUSTRY: [
+        { name: "HIGH-BAY", image: "images/highbay.png" },
+        { name: "TUBE", image: "images/tube.png" },
+        { name: "SOLID TUBE", image: "images/solidtube.png" },
+        { name: "DOWNLIGHT", image: "images/downlight.png" },
+        { name: "FLOOD LIGHT", image: "images/floodlight.png" },
+      ],
+    };
 
-const images = gsap.utils.toArray(".hero-img");
+    const productGrid = document.getElementById("product-grid");
+    const tabs = document.querySelectorAll(".tab");
 
-// initial state: first image visible vertical
-gsap.set(images, {opacity:0, scale:1, x:0});
-gsap.set(images[0], {opacity:1});
+    function showProducts(category) {
+      // Update active tab
+      tabs.forEach((tab) => tab.classList.remove("active"));
+      document
+        .querySelector(`.tab[onclick="showProducts('${category}')"]`)
+        .classList.add("active");
 
-// calculate scroll duration dynamically
-const scrollHeight = window.innerHeight * images.length * 1.5;
+      // Clear grid
+      productGrid.innerHTML = "";
 
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#hero",
-    start: "top top",
-    end: scrollHeight,
-    scrub: true,
-    pin: true
-  }
-});
+      // Add new products
+      const items = products[category];
+      if (items.length === 0) {
+        productGrid.innerHTML =
+          '<p style="grid-column: 1 / -1; color: #777;">No products in this category.</p>';
+        return;
+      }
 
-// animate each image
-images.forEach((img, i) => {
-  if(i === 0){
-    // first image expands in width
-    tl.to(img, {
-      width: "90%",       // vertical -> wide
-      height: "auto",
-      duration: 1.5,
-      ease: "power2.out"
-    })
-    .to(img, {
-      xPercent: -100,      // slide left out
-      opacity: 0,
-      duration: 1.2,
-      ease: "power2.inOut"
-    }, "+=0.3");
-  } else {
-    // next images come from right
-    tl.fromTo(img,
-      {xPercent: 100, opacity:0, width:"60%", height:"auto"},
-      {xPercent:0, opacity:1, width:"90%", duration:1.5, ease:"power2.out"},
-      "-=0.5"
-    )
-    .to(img, {xPercent: -100, opacity:0, duration:1.2, ease:"power2.inOut"}, "+=0.3");
-  }
-});
-</script>
+      items.forEach((p, i) => {
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" />
+          <div class="product-name">${p.name}</div>
+        `;
+        productGrid.appendChild(div);
 
+        // Fade-in animation delay
+        setTimeout(() => div.classList.add("show"), 100 * i);
+      });
+    }
+
+    // Load default tab
+    showProducts("INDUSTRY");
+  </script>
 </body>
 </html>
