@@ -179,9 +179,6 @@ h2 { font-size:2rem; margin:10px 0; }
 </style>
 
 
-<!-- next start-->
-
-<!-- next end -->
 
 
 
@@ -350,6 +347,112 @@ h2 { font-size:2rem; margin:10px 0; }
 
     </section><!-- /About Section -->
 
+
+
+
+<section class="herocobs-section" style="background-color: #000; position: relative; width: 100%; height: 100vh; overflow: hidden;">
+  <!-- Fullscreen background -->
+  <div class="herocobs-bg" style="background-image: url('assets/img/13.png'); position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; transition: all 0.6s ease; z-index:0;"></div>
+
+  <!-- Text overlay -->
+  <div class="herocobs-text" style="position:absolute; top:40%; left:50%; transform:translate(-50%,-50%); color: rgba(255,255,255,0.5); font-size: 80px; font-weight:300; text-align:center; letter-spacing:5px; z-index:10; transition: all 0.5s ease; opacity:1; user-select:none;">COBS</div>
+
+  <!-- Thumbnails -->
+  <div class="herocobs-side" style="position:absolute; top:50%; left:30px; transform:translateY(-50%); display:flex; flex-direction:column; gap:20px; z-index:10;">
+    <img src="assets/img/13.png" data-img="assets/img/13.png" data-text="COBS" data-index="1" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
+    <img src="assets/img/15.png" data-img="assets/img/15.png" data-text="TRACK" data-index="2" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
+    <img src="assets/img/17.png" data-img="assets/img/17.png" data-text="LIGHT" data-index="3" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
+    <img src="assets/img/18.png" data-img="assets/img/18.png" data-text="COBS" data-index="4" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
+  </div>
+
+  <!-- Page index -->
+  <div class="herocobs-index" style="position:absolute; bottom:50px; left:50px; font-size:50px; color:rgba(255,255,255,0.5); z-index:10;">01</div>
+</section>
+
+<script>
+const herocobs = document.querySelector('.herocobs-section');
+const thumbs = herocobs.querySelectorAll('.herocobs-side img');
+const bg = herocobs.querySelector('.herocobs-bg');
+const page = herocobs.querySelector('.herocobs-index');
+const overlay = herocobs.querySelector('.herocobs-text');
+
+thumbs.forEach(thumb => {
+  thumb.addEventListener('mouseenter', () => {
+    const index = thumb.getAttribute('data-index').padStart(2,'0');
+    page.textContent = index;
+
+    const newText = thumb.getAttribute('data-text');
+
+    bg.style.backgroundImage = `url('${thumb.getAttribute('data-img')}')`;
+    overlay.style.transform = 'translate(-60%, -50%)';
+    overlay.style.opacity = 0;
+
+    setTimeout(() => {
+      overlay.textContent = newText;
+      overlay.style.transform = 'translate(-50%, -50%)';
+      overlay.style.opacity = 1;
+    }, 200);
+  });
+
+  // Hover effect
+  thumb.addEventListener('mouseenter', () => {
+    thumb.style.opacity = 1;
+    thumb.style.transform = 'scale(1.15)';
+  });
+  thumb.addEventListener('mouseleave', () => {
+    thumb.style.opacity = 0.5;
+    thumb.style.transform = 'scale(1)';
+  });
+
+  // For mobile touch
+  thumb.addEventListener('touchstart', () => {
+    const index = thumb.getAttribute('data-index').padStart(2,'0');
+    page.textContent = index;
+    const newText = thumb.getAttribute('data-text');
+    bg.style.backgroundImage = `url('${thumb.getAttribute('data-img')}')`;
+    overlay.textContent = newText;
+  });
+});
+</script>
+
+<style>
+/* Responsive layout for mobile */
+@media (max-width: 768px) {
+  .herocobs-side {
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+  }
+  .herocobs-side img {
+    width: 60px !important;
+  }
+  .herocobs-text {
+    font-size: 50px !important;
+    top: 50% !important;
+  }
+  .herocobs-index {
+    font-size: 30px !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 <!-- About Section -->

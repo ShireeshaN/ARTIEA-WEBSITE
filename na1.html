@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lighting Temperature Banner</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #0a0a0a, #111);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    .lighting-banner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .lamp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .lamp::before {
+      content: "";
+      width: 2px;
+      height: 60px;
+      background: #555;
+      position: absolute;
+      top: -60px;
+    }
+
+    .light-head {
+      width: 60px;
+      height: 35px;
+      background: #ccc;
+      border-radius: 30px 30px 5px 5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glow {
+      position: absolute;
+      top: 35px;
+      width: 80px;
+      height: 200px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.85;
+      animation: pulse 3s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .label {
+      margin-top: 250px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Lighting colors */
+    .k1000  .glow { background: #ff3c00; }
+    .k2000  .glow { background: #ff8000; }
+    .k3000  .glow { background: #ffb347; }
+    .k4000  .glow { background: #ffd580; }
+    .k5000  .glow { background: #fff4e6; }
+    .k6000  .glow { background: #e6f2ff; }
+    .k7000  .glow { background: #cce0ff; }
+    .k8000  .glow { background: #99ccff; }
+    .k9000  .glow { background: #6699ff; }
+    .k10000 .glow { background: #3366ff; }
+  </style>
+</head>
+<body>
+  <div class="lighting-banner">
+    <div class="lamp k1000"><div class="light-head"></div><div class="glow"></div><div class="label">1000 K</div></div>
+    <div class="lamp k2000"><div class="light-head"></div><div class="glow"></div><div class="label">2000 K</div></div>
+    <div class="lamp k3000"><div class="light-head"></div><div class="glow"></div><div class="label">3000 K</div></div>
+    <div class="lamp k4000"><div class="light-head"></div><div class="glow"></div><div class="label">4000 K</div></div>
+    <div class="lamp k5000"><div class="light-head"></div><div class="glow"></div><div class="label">5000 K</div></div>
+    <div class="lamp k6000"><div class="light-head"></div><div class="glow"></div><div class="label">6000 K</div></div>
+    <div class="lamp k7000"><div class="light-head"></div><div class="glow"></div><div class="label">7000 K</div></div>
+    <div class="lamp k8000"><div class="light-head"></div><div class="glow"></div><div class="label">8000 K</div></div>
+    <div class="lamp k9000"><div class="light-head"></div><div class="glow"></div><div class="label">9000 K</div></div>
+    <div class="lamp k10000"><div class="light-head"></div><div class="glow"></div><div class="label">10000 K</div></div>
+  </div>
+</body>
+</html>
