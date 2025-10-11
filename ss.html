@@ -31,7 +31,7 @@
   width: 100%;
   height: 80vh;
   overflow: hidden;
-  font-family: 'Arial', sans-serif;
+  font-family: var(--heading-font);
 }
 
 .slider {
@@ -76,13 +76,15 @@
 }
 
 .overlay h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 15px;
+  font-weight: 400;
 }
 
 .overlay p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.5;
+  font-weight: 200;
 }
 
 /* Buttons */
@@ -100,9 +102,7 @@
   transition: background 0.3s;
 }
 
-.prev:hover, .next:hover {
-  /* background: rgba(255,255,255,0.7); */
-}
+
 
 .prev { left: 20px; }
 .next { right: 20px; }
