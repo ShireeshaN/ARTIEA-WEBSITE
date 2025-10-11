@@ -196,7 +196,7 @@ h2 { font-size:2rem; margin:10px 0; }
       <p>
         Artiea brings elegance and innovation to modern living spaces through thoughtfully designed lighting solutions.
       </p>
-      <a href="#" class="whowes-unique-btn">CHECK THIS →</a>
+      <a href="about.html" class="whowes-unique-btn">CHECK THIS →</a>
     </div>
   </div>
 </section>
@@ -223,7 +223,7 @@ h2 { font-size:2rem; margin:10px 0; }
   position: absolute;
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle at center, rgba(189, 186, 189, 0.3), transparent);
+ background: radial-gradient(circle at center, rgba(169, 169, 172, 0.2), transparent);
   top: 50px;
   left: 150px;
   border-radius: 50%;
@@ -235,7 +235,7 @@ h2 { font-size:2rem; margin:10px 0; }
   position: absolute;
   width: 250px;
   height: 250px;
-  background: radial-gradient(circle at center, rgba(170, 170, 172, 0.2), transparent);
+  background: radial-gradient(circle at center, rgba(169, 169, 172, 0.2), transparent);
   bottom: 80px;
   right: 150px;
   border-radius: 50%;
@@ -262,6 +262,8 @@ h2 { font-size:2rem; margin:10px 0; }
   opacity: 0;
   transform: translateY(30px);
   text-transform: capitalize;
+  color: #000 !important;
+  
 }
 
 .whowes-unique-year {
@@ -545,310 +547,7 @@ h2 { font-size:2rem; margin:10px 0; }
 
 
 
-<!-- kelvin animation start -->
- <section class="kelvi">
-  <div class="kelvinBanner">
-    <div class="kelvinLamp k1000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">1000 K</div></div>
-    <div class="kelvinLamp k2000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">2000 K</div></div>
-    <div class="kelvinLamp k3000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">3000 K</div></div>
-    <div class="kelvinLamp k4000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">4000 K</div></div>
-    <div class="kelvinLamp k5000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">5000 K</div></div>
-    <div class="kelvinLamp k6000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">6000 K</div></div>
-    <div class="kelvinLamp k7000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">7000 K</div></div>
-    <div class="kelvinLamp k8000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">8000 K</div></div>
-    <div class="kelvinLamp k9000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">9000 K</div></div>
-    <div class="kelvinLamp k10000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">10000 K</div></div>
-  </div>
-</section>
-  <style>
-   .kelvi {
-      margin: 0;
-      background: linear-gradient(to bottom, #0a0a0a, #111);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      overflow-x: auto;
-    }
 
-    /* MAIN WRAPPER */
-    .kelvinBanner {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
-      gap: 40px;
-      text-align: center;
-      padding: 60px 40px;
-      min-width: 1200px;
-    }
-
-    /* EACH UNIT */
-    .kelvinLamp {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    .kelvinImg {
-      width: 85px;
-      height: 85px;
-      object-fit: contain;
-      z-index: 2;
-      position: relative;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-
-    .kelvinLamp:hover .kelvinImg {
-      transform: scale(1.1);
-      filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
-    }
-
-    /* GLOW EFFECT */
-    .kelvinGlow {
-      position: absolute;
-      top: 80px;
-      width: 55px;
-      height: 240px;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.85;
-      animation: kelvinPulse 3s infinite ease-in-out;
-      z-index: 1;
-    }
-
-    @keyframes kelvinPulse {
-      0%, 100% { opacity: 0.8; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-    }
-
-    /* LABEL */
-    .kelvinLabel {
-      margin-top: 280px;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    /* COLOR VARIANTS */
-    .k1000  .kelvinGlow { background: #ff3c00; }
-    .k2000  .kelvinGlow { background: #ff8000; }
-    .k3000  .kelvinGlow { background: #ffb347; }
-    .k4000  .kelvinGlow { background: #ffd580; }
-    .k5000  .kelvinGlow { background: #fff4e6; }
-    .k6000  .kelvinGlow { background: #e6f2ff; }
-    .k7000  .kelvinGlow { background: #cce0ff; }
-    .k8000  .kelvinGlow { background: #99ccff; }
-    .k9000  .kelvinGlow { background: #6699ff; }
-    .k10000 .kelvinGlow { background: #3366ff; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      body { overflow-x: auto; }
-
-      .kelvinBanner {
-        gap: 30px;
-        min-width: 1100px;
-        padding: 40px 20px;
-      }
-
-      .kelvinImg {
-        width: 65px;
-        height: 65px;
-      }
-
-      .kelvinGlow {
-        top: 65px;
-        width: 70px;
-        height: 180px;
-        filter: blur(35px);
-      }
-
-      .kelvinLabel {
-        font-size: 0.85rem;
-        margin-top: 230px;
-      }
-    }
-  </style>
-<!-- kelvin animation end -->
-
-
-
-
-
-
-
-
-
-
-    
-
-
-<!-- About Section -->
-<section id="about" class="section">
-  <div class="container">
-    <h2>About Us</h2>
-    <p>Some content about your company goes here...</p>
-  </div>
-</section>
-
-<!-- Slider Section (after About) -->
-<section class="slider" id="sliderSection">
-  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-7.webp');">
-    <div class="overlay"></div>
-    <div class="content">
-      <h3>A NEW DIMENSION</h3>
-      <h1>Arkoslight,<br>Feel the Light</h1>
-      <div class="buttons">
-        <button class="btn">View More</button>
-        <button class="btn">Immerse Yourself</button>
-      </div>
-    </div>
-  </div>
-  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-8.webp');">
-    <div class="overlay"></div>
-    <div class="content">
-      <h3>DESIGNED TO PERFORM</h3>
-      <h1>Light That Shapes<br>Architecture</h1>
-      <div class="buttons">
-        <button class="btn">Explore</button>
-        <button class="btn">Discover More</button>
-      </div>
-    </div>
-  </div>
-  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-9.webp');">
-    <div class="overlay"></div>
-    <div class="content">
-      <h3>PURE INNOVATION</h3>
-      <h1>Precision in Every<br>Beam of Light</h1>
-      <div class="buttons">
-        <button class="btn">View Projects</button>
-        <button class="btn">Learn More</button>
-      </div>
-    </div>
-  </div>
-  <div class="slide" style="background-image: url('assets/img/portfolio/portfolio-10.webp');">
-    <div class="overlay"></div>
-    <div class="content">
-      <h3>THE FUTURE IS BRIGHT</h3>
-      <h1>Illuminate Tomorrow<br>With Purpose</h1>
-      <div class="buttons">
-        <button class="btn">Contact</button>
-        <button class="btn">Learn More</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="counter">1 / 4</div>
-</section>
-
-<!-- Slider CSS -->
-<style>
-.slider {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  font-family: "Inter", sans-serif;
-  background: #000;
-}
-.slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: translateY(100%);
-  will-change: transform, opacity;
-}
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1;
-}
-.content {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  text-align: center;
-  max-width: 1000px;
-  padding: 0 20px;
-  opacity: 0;
-  transform: translateY(60px);
-}
-h3 { font-size: 1rem; letter-spacing: 6px; text-transform: uppercase; font-weight: 300; color: #e0e0e0; margin-bottom: 1.5rem; }
-h1 { font-size: 8vw; font-weight: 500; line-height: 1.05; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,0.6); margin-bottom: 3rem; }
-.buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem; }
-.btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color:#fff; padding:0.9rem 2rem; font-size:1.1rem; border-radius:50px; backdrop-filter: blur(8px); cursor:pointer; transition: all 0.3s ease; font-weight:500; }
-.btn:hover { background:#fff; color:#000; transform: scale(1.05); }
-.counter { position: absolute; right: 60px; bottom: 40px; font-size:1rem; color:#ccc; letter-spacing:2px; z-index:10; font-weight:300; }
-@media (max-width:768px){ h1 { font-size:11vw; } .btn { padding:0.7rem 1.4rem; font-size:0.95rem; } }
-</style>
-
-<!-- GSAP Slider JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script>
-const sliderSection = document.getElementById("sliderSection");
-const slides = sliderSection.querySelectorAll(".slide");
-const counter = sliderSection.querySelector(".counter");
-let current = 0;
-let animating = false;
-
-// Set initial slide
-gsap.set(slides[0], { y:0, opacity:1 });
-gsap.to(slides[0].querySelector(".content"), { opacity:1, y:0, duration:1, ease:"power3.out" });
-
-// Check if slider is in viewport
-function isSliderInView() {
-  const rect = sliderSection.getBoundingClientRect();
-  return rect.top <= window.innerHeight && rect.bottom >= 0;
-}
-
-// Show slide
-function showSlide(next, direction) {
-  if(animating || next === current) return;
-  animating = true;
-
-  const currentSlide = slides[current];
-  const nextSlide = slides[next];
-  const dir = direction === "up" ? "-100%" : "100%";
-  const fromDir = direction === "up" ? "100%" : "-100%";
-
-  gsap.set(nextSlide, { y:dir, opacity:1 });
-
-  const tl = gsap.timeline({
-    defaults: { ease:"power3.inOut", duration:1.2 },
-    onComplete: () => { current = next; animating = false; }
-  });
-
-  tl.to(currentSlide.querySelector(".content"), { opacity:0, y: direction==="up"?60:-60 },0)
-    .to(currentSlide,{y:fromDir, scale:1.02},0)
-    .to(nextSlide,{y:"0%"},0)
-    .fromTo(nextSlide.querySelector(".content"), {opacity:0, y:direction==="up"?-60:60}, {opacity:1, y:0},0);
-
-  gsap.to(counter,{ textContent:`${next+1} / ${slides.length}`, duration:0.6, snap:"textContent", ease:"power1.out" });
-}
-
-// Wheel handler (only triggers when slider in view)
-function wheelHandler(e){
-  if(!isSliderInView() || animating) return;
-
-  const dir = e.deltaY > 0 ? "down" : "up";
-  let next = current + (dir==="down"?1:-1);
-
-  if(next<0 || next>=slides.length) return;
-  showSlide(next, dir);
-}
-
-window.addEventListener("wheel", wheelHandler);
-</script>
 
 
 
@@ -1355,9 +1054,13 @@ window.addEventListener("wheel", wheelHandler);
     </section><!-- /Portfolio Section -->
 
 
+
+
+
+<!-- animation images slides starts -->
     <section class="banner-section">
   <div class="banner" id="banner">
-    <img id="banner-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Banner Image">
+    <img id="banner-img" src="assets/img/15.png" alt="Banner Image">
     <div class="overlay">
       <h1 id="banner-title">Capella Bangkok</h1>
       <p id="banner-tag">Luxury riverside escape in the heart of Bangkok.</p>
@@ -1371,7 +1074,7 @@ window.addEventListener("wheel", wheelHandler);
 
 .banner-section {
   width: 100%;
-  height: 100vh;
+  height: 120vh !important;
   position: relative;
   overflow: hidden;
 }
@@ -1455,12 +1158,12 @@ window.addEventListener("wheel", wheelHandler);
 
 <script>
 const images = [
-  { url: "https://images.unsplash.com/photo-1566073771259-6a8506099945", title: "Capella Bangkok", tag: "Luxury riverside escape in the heart of Bangkok." },
-  { url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b", title: "Alila Shanghai", tag: "Modern elegance blending culture and innovation." },
-  { url: "https://images.unsplash.com/photo-1600585152220-90363fe7e115", title: "The St. Regis Macao", tag: "Timeless sophistication and exquisite hospitality." },
-  { url: "https://images.unsplash.com/photo-1501117716987-c8e1ecb2108b", title: "Andaz Nanjing Hexi", tag: "A stylish urban retreat above the skyline." },
-  { url: "https://images.unsplash.com/photo-1576678927484-cc907957088c", title: "Atlantis The Royal, Dubai", tag: "Where ocean meets opulence in every detail." },
-  { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb", title: "W Maldives Resort", tag: "An island paradise reimagined with bold design." }
+  { url: "assets/img/11.png", title: "Capella Bangkok", tag: "Luxury riverside escape in the heart of Bangkok." },
+  { url: "assets/img/15.png", title: "Alila Shanghai", tag: "Modern elegance blending culture and innovation." },
+  { url: "assets/img/16.png", title: "The St. Regis Macao", tag: "Timeless sophistication and exquisite hospitality." },
+  { url: "assets/img/17.png", title: "Andaz Nanjing Hexi", tag: "A stylish urban retreat above the skyline." },
+  { url: "assets/img/18.png", title: "Atlantis The Royal, Dubai", tag: "Where ocean meets opulence in every detail." },
+  { url: "assets/img/12.png", title: "W Maldives Resort", tag: "An island paradise reimagined with bold design." }
 ];
 
 const bannerImg = document.getElementById("banner-img");
@@ -1511,6 +1214,10 @@ animateSlices();
 // Start slideshow
 setInterval(changeSlide, 8000);
 </script>
+<!-- animation images slides ends -->
+
+
+
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section light-background">
@@ -1602,6 +1309,140 @@ setInterval(changeSlide, 8000);
         </div>
       </div>
     </section><!-- /Testimonials Section -->
+
+
+    <!-- kelvin animation start -->
+ <section class="kelvi">
+  <div class="kelvinBanner">
+    <div class="kelvinLamp k1000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">1000 K</div></div>
+    <div class="kelvinLamp k2000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">2000 K</div></div>
+    <div class="kelvinLamp k3000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">3000 K</div></div>
+    <div class="kelvinLamp k4000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">4000 K</div></div>
+    <div class="kelvinLamp k5000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">5000 K</div></div>
+    <div class="kelvinLamp k6000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">6000 K</div></div>
+    <div class="kelvinLamp k7000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">7000 K</div></div>
+    <div class="kelvinLamp k8000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">8000 K</div></div>
+    <div class="kelvinLamp k9000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">9000 K</div></div>
+    <div class="kelvinLamp k10000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">10000 K</div></div>
+  </div>
+</section>
+  <style>
+   .kelvi {
+      margin: 0;
+      background: linear-gradient(to bottom, #0a0a0a, #111);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow-x: auto;
+    }
+
+    /* MAIN WRAPPER */
+    .kelvinBanner {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 40px;
+      text-align: center;
+      padding: 60px 40px;
+      min-width: 1200px;
+    }
+
+    /* EACH UNIT */
+    .kelvinLamp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .kelvinImg {
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      z-index: 2;
+      position: relative;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .kelvinLamp:hover .kelvinImg {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
+    }
+
+    /* GLOW EFFECT */
+    .kelvinGlow {
+      position: absolute;
+      top: 80px;
+      width: 55px;
+      height: 240px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.85;
+      animation: kelvinPulse 3s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes kelvinPulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* LABEL */
+    .kelvinLabel {
+      margin-top: 280px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* COLOR VARIANTS */
+    .k1000  .kelvinGlow { background: #ff3c00; }
+    .k2000  .kelvinGlow { background: #ff8000; }
+    .k3000  .kelvinGlow { background: #ffb347; }
+    .k4000  .kelvinGlow { background: #ffd580; }
+    .k5000  .kelvinGlow { background: #fff4e6; }
+    .k6000  .kelvinGlow { background: #e6f2ff; }
+    .k7000  .kelvinGlow { background: #cce0ff; }
+    .k8000  .kelvinGlow { background: #99ccff; }
+    .k9000  .kelvinGlow { background: #6699ff; }
+    .k10000 .kelvinGlow { background: #3366ff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body { overflow-x: auto; }
+
+      .kelvinBanner {
+        gap: 30px;
+        min-width: 1100px;
+        padding: 40px 20px;
+      }
+
+      .kelvinImg {
+        width: 65px;
+        height: 65px;
+      }
+
+      .kelvinGlow {
+        top: 65px;
+        width: 70px;
+        height: 180px;
+        filter: blur(35px);
+      }
+
+      .kelvinLabel {
+        font-size: 0.85rem;
+        margin-top: 230px;
+      }
+    }
+  </style>
+<!-- kelvin animation end -->
+
+
+
 
     <!-- Services Section -->
     <section id="services" class="services section">
