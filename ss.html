@@ -1,177 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products Section</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #222;
-    }
-
-    .section {
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .section h2 {
-      font-size: 40px;
-      letter-spacing: 2px;
-      margin-bottom: 50px;
-      font-weight: 600;
-    }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 60px;
-    }
-
-    .tab {
-      padding: 15px 40px;
-      border: 1px solid #aaa;
-      font-size: 14px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      background: transparent;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .tab.active {
-      background: #333;
-      color: #fff;
-      border-color: #333;
-    }
-
-    .tab:hover {
-      background: #eee;
-    }
-
-    /* Product Grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product {
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-
-    /* Fade-in animation */
-    .product.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .product img {
-      max-height: 200px; /* Increased height */
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .product img:hover {
-      transform: scale(1.08);
-    }
-
-    .product-name {
-      font-size: 16px;
-      letter-spacing: 3px;
-      color: #444;
-      font-weight: 500;
-    }
-
-    @media (max-width: 600px) {
-      .tab {
-        padding: 12px 25px;
-        font-size: 13px;
-      }
-      .section h2 {
-        font-size: 32px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <section class="section">
-    <h2>PRODUCTS</h2>
-
-    <!-- Tabs -->
-    <div class="tabs">
-      <div class="tab" onclick="showProducts('COB')">COB</div>
-      <div class="tab" onclick="showProducts('LASERBLADES')">LASER BLADES</div>
-      <div class="tab" onclick="showProducts('WALL WASHERS')">WALL WASHERS</div>
-      <div class="tab" onclick="showProducts('MAGNETIC')">MAGNETIC TRACK</div>
-      <div class="tab active" onclick="showProducts('INDUSTRY')">INDUSTRY</div>
+<section class="banner">
+  <div class="slider">
+    <div class="slides">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="assets/img/18.png" alt="Our Vision">
+        <div class="overlay">
+          <h2>Our Vision</h2>
+          <p>To illuminate the world with timeless elegance and cutting-edge Italian design, crafting lighting experiences that transcend spaces and inspire lifestyles globally.</p>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="assets/img/16.png" alt="Our Mission">
+        <div class="overlay">
+          <h2>Our Mission</h2>
+          <p>Creating lighting that resonates with international luxury lifestyles, combining innovation with premium Italian craftsmanship.</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Product Grid -->
-    <div id="product-grid" class="product-grid"></div>
-  </section>
+    <!-- Manual Controls -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+</section>
 
-  <script>
-    const products = {
-      NEW: [],
-      INDOOR: [],
-      OUTDOOR: [],
-      SYNC: [],
-      INDUSTRY: [
-        { name: "HIGH-BAY", image: "images/highbay.png" },
-        { name: "TUBE", image: "images/tube.png" },
-        { name: "SOLID TUBE", image: "images/solidtube.png" },
-        { name: "DOWNLIGHT", image: "images/downlight.png" },
-        { name: "FLOOD LIGHT", image: "images/floodlight.png" },
-      ],
-    };
+<style>
+.banner {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+}
 
-    const productGrid = document.getElementById("product-grid");
-    const tabs = document.querySelectorAll(".tab");
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-    function showProducts(category) {
-      // Update active tab
-      tabs.forEach((tab) => tab.classList.remove("active"));
-      document
-        .querySelector(`.tab[onclick="showProducts('${category}')"]`)
-        .classList.add("active");
+.slides {
+  display: flex;
+  width: 200%; /* 2 slides */
+  height: 100%;
+  transition: transform 1s ease-in-out;
+}
 
-      // Clear grid
-      productGrid.innerHTML = "";
+.slide {
+  position: relative;
+  width: 50%; /* 1 slide visible at a time */
+  height: 100%;
+  overflow: hidden;
+}
 
-      // Add new products
-      const items = products[category];
-      if (items.length === 0) {
-        productGrid.innerHTML =
-          '<p style="grid-column: 1 / -1; color: #777;">No products in this category.</p>';
-        return;
-      }
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition: transform 1s ease;
+}
 
-      items.forEach((p, i) => {
-        const div = document.createElement("div");
-        div.classList.add("product");
-        div.innerHTML = `
-          <img src="${p.image}" alt="${p.name}" />
-          <div class="product-name">${p.name}</div>
-        `;
-        productGrid.appendChild(div);
+.slide:hover img {
+  transform: scale(1.05);
+}
 
-        // Fade-in animation delay
-        setTimeout(() => div.classList.add("show"), 100 * i);
-      });
-    }
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: #fff;
+  max-width: 40%;
+}
 
-    // Load default tab
-    showProducts("INDUSTRY");
-  </script>
-</body>
-</html>
+.overlay h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.prev:hover, .next:hover {
+  /* background: rgba(255,255,255,0.7); */
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* Responsive */
+@media (max-width: 768px){
+  .overlay {
+    max-width: 80%;
+    left: 5%;
+  }
+  .overlay h2 { font-size: 2rem; }
+  .overlay p { font-size: 1rem; }
+}
+</style>
+
+<script>
+let index = 0;
+const slides = document.querySelector('.slides');
+const totalSlides = document.querySelectorAll('.slide').length;
+
+function showSlide(i){
+  if(i >= totalSlides) index = 0;
+  else if(i < 0) index = totalSlides - 1;
+  else index = i;
+  slides.style.transform = `translateX(-${index * 50}%)`; // 50% width per slide
+}
+
+// Automatic slide every 5s
+setInterval(() => {
+  showSlide(index + 1);
+}, 5000);
+
+// Manual controls
+document.querySelector('.prev').addEventListener('click', () => {
+  showSlide(index - 1);
+});
+document.querySelector('.next').addEventListener('click', () => {
+  showSlide(index + 1);
+});
+</script>
