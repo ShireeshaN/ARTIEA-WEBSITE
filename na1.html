@@ -1,104 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lighting Temperature Banner</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Who We Are</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <style>
-    body {
+    * {
       margin: 0;
-      background: linear-gradient(to bottom, #0a0a0a, #111);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      color: #111;
+      background-color: #f8f8f8;
+      overflow-x: hidden;
+    }
+
+    /* MAIN SECTION */
+    .whowes {
+      width: 100%;
       min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-    }
-
-    .lighting-banner {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 50px;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .lamp {
-      display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      background: white;
+      overflow: hidden;
       position: relative;
+      padding: 80px 0 120px; /* bottom space */
     }
 
-    .lamp::before {
+    .whowes::before {
       content: "";
-      width: 2px;
-      height: 60px;
-      background: #555;
       position: absolute;
-      top: -60px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle at center, rgba(189, 186, 189, 0.3), transparent);
+      top: 50px;
+      left: 150px;
+      border-radius: 50%;
+      z-index: 0;
     }
 
-    .light-head {
-      width: 60px;
-      height: 35px;
-      background: #ccc;
-      border-radius: 30px 30px 5px 5px;
+    .whowes::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle at center, rgba(170, 170, 172, 0.2), transparent);
+      bottom: 80px;
+      right: 150px;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .whowes-content {
+      max-width: 1100px;
+      width: 90%;
       position: relative;
       z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 2rem;
     }
 
-    .glow {
-      position: absolute;
-      top: 35px;
-      width: 80px;
-      height: 200px;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.85;
-      animation: pulse 3s infinite ease-in-out;
-      z-index: 1;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.8; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-    }
-
-    .label {
-      margin-top: 250px;
-      font-size: 1rem;
+    .whowes-title {
+      font-family: "Poppins", sans-serif;
+      font-size: 3.5rem;
       font-weight: 600;
-      letter-spacing: 1px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      grid-column: span 2;
+      opacity: 0;
+      transform: translateY(30px);
+      text-transform: capitalize;
     }
 
-    /* Lighting colors */
-    .k1000  .glow { background: #ff3c00; }
-    .k2000  .glow { background: #ff8000; }
-    .k3000  .glow { background: #ffb347; }
-    .k4000  .glow { background: #ffd580; }
-    .k5000  .glow { background: #fff4e6; }
-    .k6000  .glow { background: #e6f2ff; }
-    .k7000  .glow { background: #cce0ff; }
-    .k8000  .glow { background: #99ccff; }
-    .k9000  .glow { background: #6699ff; }
-    .k10000 .glow { background: #3366ff; }
+    .year {
+      font-weight: 400;
+      color: #666;
+    }
+
+    /* IMAGES */
+    .images {
+      position: relative;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .images .img1 {
+      width: 220px;
+      border-radius: 8px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      filter: grayscale(100%);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .images .img2 {
+      width: 300px;
+      border-radius: 8px;
+      position: relative;
+      top: 100px;
+      left: 120px;
+      filter: grayscale(100%);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* TEXT */
+    .text {
+      max-width: 400px;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .text h4 {
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      color: #222;
+    }
+
+    .text p {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-weight: 500;
+      color: #111;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .btn::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      background: #111;
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      transition: width 0.3s ease;
+    }
+
+    .btn:hover::after {
+      width: 100%;
+    }
+
+    /* ========== MOBILE VIEW ========== */
+    @media (max-width: 900px) {
+      .whowes-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .whowes-title {
+        font-size: 2.4rem;
+        grid-column: 1;
+        margin-bottom: 1.5rem;
+      }
+
+      .images {
+        margin: 2rem auto 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(1);
+      }
+
+      .images .img1,
+      .images .img2 {
+        position: static;
+        width: 80%;
+        margin: 10px 0;
+      }
+
+      .text {
+        max-width: 100%;
+        margin: auto;
+        padding: 0 1rem;
+        opacity: 1;
+        transform: none;
+      }
+
+      .text h4 {
+        font-size: 1.1rem;
+      }
+
+      .text p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="lighting-banner">
-    <div class="lamp k1000"><div class="light-head"></div><div class="glow"></div><div class="label">1000 K</div></div>
-    <div class="lamp k2000"><div class="light-head"></div><div class="glow"></div><div class="label">2000 K</div></div>
-    <div class="lamp k3000"><div class="light-head"></div><div class="glow"></div><div class="label">3000 K</div></div>
-    <div class="lamp k4000"><div class="light-head"></div><div class="glow"></div><div class="label">4000 K</div></div>
-    <div class="lamp k5000"><div class="light-head"></div><div class="glow"></div><div class="label">5000 K</div></div>
-    <div class="lamp k6000"><div class="light-head"></div><div class="glow"></div><div class="label">6000 K</div></div>
-    <div class="lamp k7000"><div class="light-head"></div><div class="glow"></div><div class="label">7000 K</div></div>
-    <div class="lamp k8000"><div class="light-head"></div><div class="glow"></div><div class="label">8000 K</div></div>
-    <div class="lamp k9000"><div class="light-head"></div><div class="glow"></div><div class="label">9000 K</div></div>
-    <div class="lamp k10000"><div class="light-head"></div><div class="glow"></div><div class="label">10000 K</div></div>
-  </div>
+  <section class="whowes">
+    <div class="whowes-content">
+      <h1 class="whowes-title">
+        The Vision <br> & <span class="year">The Drive</span>
+      </h1>
+
+      <div class="images">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="model" class="img1">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="model" class="img2">
+      </div>
+
+      <div class="text">
+        <h4>Inspired Illumination for Inspired Living.</h4>
+        <p>
+          Artiea brings elegance and innovation to modern living spaces through thoughtfully designed lighting solutions.
+        </p>
+        <a href="#" class="btn">CHECK THIS →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GSAP Animations -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Page Load Animation
+    gsap.timeline()
+      .to(".whowes-title", {opacity: 1, y: 0, duration: 1, ease: "power3.out"})
+      .to(".images", {opacity: 1, scale: 1, duration: 1.2, ease: "power3.out"}, "-=0.5")
+      .to(".text", {opacity: 1, y: 0, duration: 1, ease: "power2.out"}, "-=0.6");
+
+    // Floating motion (desktop only)
+    if (window.innerWidth > 900) {
+      gsap.to(".img1", {
+        y: -30,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(".img2", {
+        y: 30,
+        duration: 3.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }
+
+    // Scroll-trigger animation for text
+    gsap.from(".text", {
+      scrollTrigger: {
+        trigger: ".text",
+        start: "top 85%",
+      },
+      opacity: 0,
+      y: 40,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+  </script>
 </body>
 </html>

@@ -181,24 +181,260 @@ h2 { font-size:2rem; margin:10px 0; }
 
 
 
+<!-- abouts start -->
+<!-- WHO WE ARE SECTION -->
+<section class="whowes">
+  <div class="whowes-content">
+    <h1 class="whowes-title">
+      The Vision <br> & <span class="year">The Drive</span>
+    </h1>
+
+    <div class="images">
+      <img src="assets/img/fis.png" alt="model" class="img1">
+      <img src="assets/img/sec.png" alt="model" class="img2">
+    </div>
+
+    <div class="text">
+      <h4>Inspired Illumination for Inspired Living.</h4>
+      <p>
+        Artiea brings elegance and innovation to modern living spaces through thoughtfully designed lighting solutions.
+      </p>
+      <a href="#" class="btn">CHECK THIS →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+  .whowes {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    overflow: hidden;
+    position: relative;
+    padding: 80px 0 160px;
+    font-family: "Poppins", sans-serif;
+    color: #111;
+  }
+
+  .whowes::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle at center, rgba(189, 186, 189, 0.3), transparent);
+    top: 50px;
+    left: 150px;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .whowes::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle at center, rgba(170, 170, 172, 0.2), transparent);
+    bottom: 80px;
+    right: 150px;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .whowes-content {
+    max-width: 1100px;
+    width: 90%;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .whowes-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    grid-column: span 2;
+    opacity: 0;
+    transform: translateY(30px);
+    text-transform: capitalize;
+  }
+
+  .year {
+    font-weight: 400;
+    color: #666;
+  }
+
+  .images {
+    position: relative;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .images .img1 {
+    width: 220px;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: grayscale(100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .images .img2 {
+    width: 300px;
+    border-radius: 8px;
+    position: relative;
+    top: 100px;
+    left: 120px;
+    filter: grayscale(100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .text {
+    max-width: 400px;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .text h4 {
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: #222;
+  }
+
+  .text p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .btn {
+    text-decoration: none;
+    font-weight: 500;
+    color: #111;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .btn::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #111;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease;
+  }
+
+  .btn:hover::after {
+    width: 100%;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 900px) {
+    .whowes-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .whowes-title {
+      font-size: 2.4rem;
+      grid-column: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .images {
+      margin: 2rem auto 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(1);
+    }
+
+    .images .img1,
+    .images .img2 {
+      position: static;
+      width: 80%;
+      margin: 10px 0;
+    }
+
+    .text {
+      max-width: 100%;
+      margin: auto;
+      padding: 0 1rem;
+      opacity: 1;
+      transform: none;
+    }
+
+    .text h4 {
+      font-size: 1.1rem;
+    }
+
+    .text p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Fade-in animations
+  gsap.timeline()
+    .to(".whowes-title", { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
+    .to(".images", { opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" }, "-=0.5")
+    .to(".text", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.6");
+
+  // Scroll-triggered fade for text
+  gsap.from(".text", {
+    scrollTrigger: {
+      trigger: ".text",
+      start: "top 85%",
+    },
+    opacity: 0,
+    y: 40,
+    duration: 1.2,
+    ease: "power3.out"
+  });
+</script>
+
+
+<!-- abouts end -->
 
 
 
 
 
+    <!-- <section id="about" class="about section light-background">
 
-    <!-- About Section -->
-    <section id="about" class="about section light-background">
-
-      <!-- Section Title -->
+    
       <div class="container section-title" data-aos="fade-up">
         <h2>About</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit
+          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit
+        </p>
+      </div> -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <!-- End Section Title -->
 
-        <!-- Intro + Photo -->
+      <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+     
         <div class="row align-items-center justify-content-between intro-wrap gy-5">
           <div class="col-lg-7" data-aos="fade-right" data-aos-delay="150">
             <div class="intro-content">
@@ -230,9 +466,9 @@ h2 { font-size:2rem; margin:10px 0; }
             </figure>
           </div>
         </div>
-        <!-- End Intro + Photo -->
+   
 
-        <!-- Skills Grid -->
+      
         <div class="skills-wrap">
           <div class="row g-4">
             <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="120">
@@ -265,9 +501,9 @@ h2 { font-size:2rem; margin:10px 0; }
             </div>
           </div>
         </div>
-        <!-- End Skills Grid -->
+    
 
-        <!-- Journey Timeline -->
+ 
         <div class="journey-wrap">
           <div class="row g-4">
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
@@ -304,15 +540,15 @@ h2 { font-size:2rem; margin:10px 0; }
             </div>
           </div>
         </div>
-        <!-- End Journey Timeline -->
+    
 
-        <!-- Quote -->
+ 
         <blockquote class="personal-quote" data-aos="fade-down" data-aos-delay="200">
           <p>“Building clean and meaningful experiences through thoughtful code and quiet design.”</p>
         </blockquote>
-        <!-- End Quote -->
+      
 
-        <!-- Fun Facts -->
+    
         <div class="facts-wrap">
           <div class="row g-3 justify-content-center">
             <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="120">
@@ -341,28 +577,30 @@ h2 { font-size:2rem; margin:10px 0; }
             </div>
           </div>
         </div>
-        <!-- End Fun Facts -->
+    
 
-      </div>
+      </div> -->
 
-    </section><!-- /About Section -->
-
-
+    </section>
 
 
+
+<!-- product start -->
 <section class="herocobs-section" style="background-color: #000; position: relative; width: 100%; height: 100vh; overflow: hidden;">
   <!-- Fullscreen background -->
-  <div class="herocobs-bg" style="background-image: url('assets/img/13.png'); position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; transition: all 0.6s ease; z-index:0;"></div>
+  <div class="herocobs-bg" style="background-image: url('assets/img/13.png'); position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; transition: all 0.8s ease; z-index:0;"></div>
 
   <!-- Text overlay -->
-  <div class="herocobs-text" style="position:absolute; top:40%; left:50%; transform:translate(-50%,-50%); color: rgba(255,255,255,0.5); font-size: 80px; font-weight:300; text-align:center; letter-spacing:5px; z-index:10; transition: all 0.5s ease; opacity:1; user-select:none;">COBS</div>
+  <div class="herocobs-text" style="position:absolute; top:40%; left:50%; transform:translate(-50%,-50%); color: rgba(255,255,255,0.5); font-size: 80px; font-weight:300; text-align:center; letter-spacing:5px; z-index:10; transition: all 0.6s ease; opacity:1; user-select:none;">
+    COBS
+  </div>
 
   <!-- Thumbnails -->
   <div class="herocobs-side" style="position:absolute; top:50%; left:30px; transform:translateY(-50%); display:flex; flex-direction:column; gap:20px; z-index:10;">
-    <img src="assets/img/13.png" data-img="assets/img/13.png" data-text="COBS" data-index="1" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
-    <img src="assets/img/15.png" data-img="assets/img/15.png" data-text="TRACK" data-index="2" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
-    <img src="assets/img/17.png" data-img="assets/img/17.png" data-text="LIGHT" data-index="3" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
-    <img src="assets/img/18.png" data-img="assets/img/18.png" data-text="COBS" data-index="4" style="width:80px; opacity:0.5; cursor:pointer; transition:0.3s;">
+    <img src="assets/img/13.png" data-img="assets/img/13.png" data-text="COBS" data-index="1" style="width:80px; opacity:1; cursor:pointer; transition:all 0.3s ease;">
+    <img src="assets/img/15.png" data-img="assets/img/15.png" data-text="TRACK" data-index="2" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
+    <img src="assets/img/17.png" data-img="assets/img/17.png" data-text="LIGHT" data-index="3" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
+    <img src="assets/img/18.png" data-img="assets/img/18.png" data-text="COBS" data-index="4" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
   </div>
 
   <!-- Page index -->
@@ -376,46 +614,78 @@ const bg = herocobs.querySelector('.herocobs-bg');
 const page = herocobs.querySelector('.herocobs-index');
 const overlay = herocobs.querySelector('.herocobs-text');
 
-thumbs.forEach(thumb => {
-  thumb.addEventListener('mouseenter', () => {
-    const index = thumb.getAttribute('data-index').padStart(2,'0');
-    page.textContent = index;
+let currentIndex = 0;
+let autoChangeInterval;
 
-    const newText = thumb.getAttribute('data-text');
+function showSlide(index) {
+  const thumb = thumbs[index];
+  const newImg = thumb.getAttribute('data-img');
+  const newText = thumb.getAttribute('data-text');
+  const newIndex = thumb.getAttribute('data-index').padStart(2, '0');
 
-    bg.style.backgroundImage = `url('${thumb.getAttribute('data-img')}')`;
-    overlay.style.transform = 'translate(-60%, -50%)';
-    overlay.style.opacity = 0;
+  // Background and text change animation
+  bg.style.opacity = 0;
+  overlay.style.opacity = 0;
+  overlay.style.transform = 'translate(-60%, -50%)';
 
-    setTimeout(() => {
-      overlay.textContent = newText;
-      overlay.style.transform = 'translate(-50%, -50%)';
-      overlay.style.opacity = 1;
-    }, 200);
-  });
-
-  // Hover effect
-  thumb.addEventListener('mouseenter', () => {
-    thumb.style.opacity = 1;
-    thumb.style.transform = 'scale(1.15)';
-  });
-  thumb.addEventListener('mouseleave', () => {
-    thumb.style.opacity = 0.5;
-    thumb.style.transform = 'scale(1)';
-  });
-
-  // For mobile touch
-  thumb.addEventListener('touchstart', () => {
-    const index = thumb.getAttribute('data-index').padStart(2,'0');
-    page.textContent = index;
-    const newText = thumb.getAttribute('data-text');
-    bg.style.backgroundImage = `url('${thumb.getAttribute('data-img')}')`;
+  setTimeout(() => {
+    bg.style.backgroundImage = `url('${newImg}')`;
+    page.textContent = newIndex;
     overlay.textContent = newText;
+
+    bg.style.opacity = 1;
+    overlay.style.opacity = 1;
+    overlay.style.transform = 'translate(-50%, -50%)';
+  }, 300);
+
+  // Update thumbnails opacity
+  thumbs.forEach(t => t.style.opacity = 0.5);
+  thumb.style.opacity = 1;
+  currentIndex = index;
+}
+
+// Auto-change every 5 seconds
+function startAutoChange() {
+  autoChangeInterval = setInterval(() => {
+    let nextIndex = (currentIndex + 1) % thumbs.length;
+    showSlide(nextIndex);
+  }, 5000);
+}
+
+// Pause auto-change when hovering
+function stopAutoChange() {
+  clearInterval(autoChangeInterval);
+}
+
+// Initialize manual hover events
+thumbs.forEach((thumb, i) => {
+  thumb.addEventListener('mouseenter', () => {
+    stopAutoChange();
+    showSlide(i);
+  });
+  thumb.addEventListener('mouseleave', startAutoChange);
+  thumb.addEventListener('touchstart', () => {
+    stopAutoChange();
+    showSlide(i);
   });
 });
+
+// Start slideshow
+showSlide(0);
+startAutoChange();
 </script>
 
 <style>
+.herocobs-bg {
+  transition: opacity 0.8s ease, background-image 0.8s ease;
+}
+.herocobs-text {
+  transition: all 0.6s ease;
+}
+.herocobs-side img:hover {
+  transform: scale(1.15);
+}
+
 /* Responsive layout for mobile */
 @media (max-width: 768px) {
   .herocobs-side {
@@ -440,8 +710,138 @@ thumbs.forEach(thumb => {
   }
 }
 </style>
+<!-- product end -->
 
 
+<!-- kelvin animation start -->
+ <section class="kelvi">
+  <div class="kelvinBanner">
+    <div class="kelvinLamp k1000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">1000 K</div></div>
+    <div class="kelvinLamp k2000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">2000 K</div></div>
+    <div class="kelvinLamp k3000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">3000 K</div></div>
+    <div class="kelvinLamp k4000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">4000 K</div></div>
+    <div class="kelvinLamp k5000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">5000 K</div></div>
+    <div class="kelvinLamp k6000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">6000 K</div></div>
+    <div class="kelvinLamp k7000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">7000 K</div></div>
+    <div class="kelvinLamp k8000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">8000 K</div></div>
+    <div class="kelvinLamp k9000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">9000 K</div></div>
+    <div class="kelvinLamp k10000"><img src="assets/img/kelvins.png" class="kelvinImg"><div class="kelvinGlow"></div><div class="kelvinLabel">10000 K</div></div>
+  </div>
+</section>
+  <style>
+   .kelvi {
+      margin: 0;
+      background: linear-gradient(to bottom, #0a0a0a, #111);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow-x: auto;
+    }
+
+    /* MAIN WRAPPER */
+    .kelvinBanner {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 40px;
+      text-align: center;
+      padding: 60px 40px;
+      min-width: 1200px;
+    }
+
+    /* EACH UNIT */
+    .kelvinLamp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .kelvinImg {
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      z-index: 2;
+      position: relative;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .kelvinLamp:hover .kelvinImg {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
+    }
+
+    /* GLOW EFFECT */
+    .kelvinGlow {
+      position: absolute;
+      top: 80px;
+      width: 55px;
+      height: 240px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.85;
+      animation: kelvinPulse 3s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes kelvinPulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* LABEL */
+    .kelvinLabel {
+      margin-top: 280px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* COLOR VARIANTS */
+    .k1000  .kelvinGlow { background: #ff3c00; }
+    .k2000  .kelvinGlow { background: #ff8000; }
+    .k3000  .kelvinGlow { background: #ffb347; }
+    .k4000  .kelvinGlow { background: #ffd580; }
+    .k5000  .kelvinGlow { background: #fff4e6; }
+    .k6000  .kelvinGlow { background: #e6f2ff; }
+    .k7000  .kelvinGlow { background: #cce0ff; }
+    .k8000  .kelvinGlow { background: #99ccff; }
+    .k9000  .kelvinGlow { background: #6699ff; }
+    .k10000 .kelvinGlow { background: #3366ff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body { overflow-x: auto; }
+
+      .kelvinBanner {
+        gap: 30px;
+        min-width: 1100px;
+        padding: 40px 20px;
+      }
+
+      .kelvinImg {
+        width: 65px;
+        height: 65px;
+      }
+
+      .kelvinGlow {
+        top: 65px;
+        width: 70px;
+        height: 180px;
+        filter: blur(35px);
+      }
+
+      .kelvinLabel {
+        font-size: 0.85rem;
+        margin-top: 230px;
+      }
+    }
+  </style>
+<!-- kelvin animation end -->
 
 
 
