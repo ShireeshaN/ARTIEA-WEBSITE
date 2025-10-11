@@ -6,23 +6,96 @@
   <title>Product Gallery</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { background: #fff; }
-    .category-toggle svg { transition: transform 0.3s ease; }
-    .rotate-180 { transform: rotate(180deg); }
-    .product-card { background: #f4f4f4; border-radius: 10px; position: relative; cursor: pointer; overflow: hidden; text-align: center; }
-    .product-card img { width: 100%; height: 400px; object-fit: cover; transition: opacity 0.4s ease, transform 0.4s ease; }
-    .product-card .alt-img { opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-    .product-card:hover .alt-img { opacity: 1; transform: scale(1.05); }
-    .product-card:hover .main-img { opacity: 0; transform: scale(1.05); }
-    .badge-novedad { position: absolute; top: 10px; right: 10px; background: #fff; padding: 4px 8px; border-radius: 5px; font-size: 0.7rem; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    .product-name { margin-top: 10px; font-size: 0.9rem; font-weight: 500; color: #333; }
-    .toggle-btn { display: flex; align-items: center; border-radius: 30px; border: 1px solid #ddd; padding: 6px 12px; gap: 10px; cursor: pointer; overflow: hidden; width: 160px; transition: all 0.3s ease; }
-    .toggle-text { transition: all 0.4s ease; }
-    .toggle-btn.active { flex-direction: row-reverse; }
-    .toggle-icon { transition: all 0.4s ease; }
-    #categoryList li a { text-decoration: none; border-bottom: 1px solid transparent; display: block; padding: 5px 0; color: #000; }
-    #categoryList li a:hover { border-bottom: 1px solid #000; }
-    .active-category { text-decoration: underline; font-weight: bold; }
+    body { 
+      background: #fff;
+     }
+    .category-toggle svg {
+       transition: transform 0.3s ease; 
+      }
+    .rotate-180 { 
+      transform: rotate(180deg); 
+    }
+    .product-card { 
+      background: #f4f4f4; 
+      border-radius: 10px; 
+      position: relative; 
+      cursor: pointer; 
+      overflow: hidden; 
+      text-align: center;
+     }
+    .product-card img { 
+      width: 100%; 
+      height: 400px; 
+      object-fit: cover; 
+      transition: opacity 0.4s ease, transform 0.4s ease; 
+    }
+    .product-card .alt-img { 
+      opacity: 0; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+    }
+    .product-card:hover .alt-img { 
+      opacity: 1; 
+      transform: scale(1.05); 
+    }
+    .product-card:hover .main-img { 
+      opacity: 0; 
+      transform: scale(1.05); 
+    }
+    .badge-novedad { 
+      position: absolute; 
+      top: 10px; 
+      right: 10px; 
+      background: #fff; 
+      padding: 4px 8px; 
+      border-radius: 5px; 
+      font-size: 0.7rem; =
+      box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+    }
+    .product-name { 
+      margin-top: 10px; 
+      font-size: 0.9rem; 
+      font-weight: 500; 
+      color: #333; 
+    }
+    .toggle-btn { 
+      display: flex; 
+      align-items: center; 
+      border-radius: 30px; 
+      border: 1px solid #ddd; 
+      padding: 6px 12px; 
+      gap: 10px; 
+      cursor: pointer; 
+      overflow: hidden; 
+      width: 160px; 
+      transition: all 0.3s ease; 
+    }
+    .toggle-text { 
+      transition: all 0.4s ease; 
+    }
+    .toggle-btn.active { 
+      flex-direction: row-reverse; 
+    }
+    .toggle-icon { 
+      transition: all 0.4s ease; 
+    }
+    #categoryList li a { 
+      text-decoration: none; 
+      border-bottom: 1px solid transparent; 
+      display: block; 
+      padding: 5px 0; 
+      color: #000; 
+    }
+    #categoryList li a:hover { 
+      border-bottom: 1px solid #000; 
+    }
+    .active-category { 
+      text-decoration: underline; 
+      font-weight: bold; }
   </style>
 </head>
 <body class="p-5">
@@ -30,19 +103,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 mb-4">
-      <h1 class="fs-2 fw-light mb-4" id="categoryHeading">Cob</h1>
+      <h1 class="fs-2 fw-light mb-4" id="categoryHeading">Cob </h1>
       <button class="btn w-100 d-flex justify-content-between align-items-center category-toggle border-bottom mb-3" id="catToggle">
         <span>CATEGORÍA</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5L10 13.5L15 8.5"/></svg>
       </button>
       <ul class="list-unstyled ps-2" id="categoryList">
-        <li><a href="all.html" class="active-category">All</a></li>
+        <li><a href="product.html" class="active-category">All</a></li>
         <li><a href="cob-lights.html">Cob </a></li>
-        <li><a href="surface.html">Laser Blades</a></li>
-        <li><a href="suspension.html">Wall Washers</a></li>
-        <li><a href="wall.html">Magnetic Track </a></li>
-        <li><a href="table-floor.html">Surface</a></li>
-        <li><a href="track-lights.html">Tiltable</a></li>
+        <li><a href="laser-blades.html">Laser Blades</a></li>
+        <li><a href="wallwashers.html">Wall Washers</a></li>
+        <li><a href="magnetic-track-lights.html">Magnetic Track </a></li>
+        <li><a href="surface-lights.html">Surface</a></li>
+        <li><a href="tiltable-lights.html">Tiltable</a></li>
         <!-- <li><a href="custom-systems.html">Custom Systems</a></li>
         <li><a href="outdoor.html">Outdoor</a></li>
         <li><a href="lamps.html">Lamps</a></li>
