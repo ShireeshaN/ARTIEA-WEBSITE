@@ -1,18 +1,18 @@
-<section class="banner">
-  <div class="slider">
-    <div class="slides">
+<section class="luxury-banner">
+  <div class="luxury-slider">
+    <div class="luxury-slides">
       <!-- Slide 1 -->
-      <div class="slide">
+      <div class="luxury-slide">
         <img src="assets/img/18.png" alt="Our Vision">
-        <div class="overlay">
+        <div class="luxury-overlay">
           <h2>Our Vision</h2>
           <p>To illuminate the world with timeless elegance and cutting-edge Italian design, crafting lighting experiences that transcend spaces and inspire lifestyles globally.</p>
         </div>
       </div>
       <!-- Slide 2 -->
-      <div class="slide">
+      <div class="luxury-slide">
         <img src="assets/img/16.png" alt="Our Mission">
-        <div class="overlay">
+        <div class="luxury-overlay">
           <h2>Our Mission</h2>
           <p>Creating lighting that resonates with international luxury lifestyles, combining innovation with premium Italian craftsmanship.</p>
         </div>
@@ -20,13 +20,13 @@
     </div>
 
     <!-- Manual Controls -->
-    <button class="prev">&#10094;</button>
-    <button class="next">&#10095;</button>
+    <button class="luxury-prev">&#10094;</button>
+    <button class="luxury-next">&#10095;</button>
   </div>
 </section>
 
 <style>
-.banner {
+.luxury-banner {
   position: relative;
   width: 100%;
   height: 80vh;
@@ -34,27 +34,27 @@
   font-family: var(--heading-font);
 }
 
-.slider {
+.luxury-slider {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.slides {
+.luxury-slides {
   display: flex;
   width: 200%; /* 2 slides */
   height: 100%;
   transition: transform 1s ease-in-out;
 }
 
-.slide {
+.luxury-slide {
   position: relative;
   width: 50%; /* 1 slide visible at a time */
   height: 100%;
   overflow: hidden;
 }
 
-.slide img {
+.luxury-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -62,33 +62,33 @@
   transition: transform 1s ease;
 }
 
-.slide:hover img {
+.luxury-slide:hover img {
   transform: scale(1.05);
 }
 
-.overlay {
+.luxury-overlay {
   position: absolute;
   top: 50%;
   left: 10%;
   transform: translateY(-50%);
-  color: #fff;
+  color: #cec9c9;
   max-width: 40%;
 }
 
-.overlay h2 {
+.luxury-overlay h2 {
   font-size: 2.5rem;
   margin-bottom: 15px;
   font-weight: 400;
 }
 
-.overlay p {
+.luxury-overlay p {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 200;
 }
 
 /* Buttons */
-.prev, .next {
+.luxury-prev, .luxury-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -102,44 +102,42 @@
   transition: background 0.3s;
 }
 
-
-
-.prev { left: 20px; }
-.next { right: 20px; }
+.luxury-prev { left: 20px; }
+.luxury-next { right: 20px; }
 
 /* Responsive */
 @media (max-width: 768px){
-  .overlay {
+  .luxury-overlay {
     max-width: 80%;
     left: 5%;
   }
-  .overlay h2 { font-size: 2rem; }
-  .overlay p { font-size: 1rem; }
+  .luxury-overlay h2 { font-size: 2rem; }
+  .luxury-overlay p { font-size: 1rem; }
 }
 </style>
 
 <script>
-let index = 0;
-const slides = document.querySelector('.slides');
-const totalSlides = document.querySelectorAll('.slide').length;
+let luxuryIndex = 0;
+const luxurySlides = document.querySelector('.luxury-slides');
+const totalLuxurySlides = document.querySelectorAll('.luxury-slide').length;
 
-function showSlide(i){
-  if(i >= totalSlides) index = 0;
-  else if(i < 0) index = totalSlides - 1;
-  else index = i;
-  slides.style.transform = `translateX(-${index * 50}%)`; // 50% width per slide
+function showLuxurySlide(i){
+  if(i >= totalLuxurySlides) luxuryIndex = 0;
+  else if(i < 0) luxuryIndex = totalLuxurySlides - 1;
+  else luxuryIndex = i;
+  luxurySlides.style.transform = `translateX(-${luxuryIndex * 50}%)`; // 50% width per slide
 }
 
 // Automatic slide every 5s
 setInterval(() => {
-  showSlide(index + 1);
+  showLuxurySlide(luxuryIndex + 1);
 }, 5000);
 
 // Manual controls
-document.querySelector('.prev').addEventListener('click', () => {
-  showSlide(index - 1);
+document.querySelector('.luxury-prev').addEventListener('click', () => {
+  showLuxurySlide(luxuryIndex - 1);
 });
-document.querySelector('.next').addEventListener('click', () => {
-  showSlide(index + 1);
+document.querySelector('.luxury-next').addEventListener('click', () => {
+  showLuxurySlide(luxuryIndex + 1);
 });
 </script>
