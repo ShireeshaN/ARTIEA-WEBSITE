@@ -1634,6 +1634,15 @@ setInterval(changeSlide, 8000);
 
 
 
+
+
+
+
+
+
+
+
+
     <!-- Services Section -->
     <section id="services" class="services section">
 
@@ -1748,6 +1757,399 @@ setInterval(changeSlide, 8000);
       </div>
 
     </section><!-- /Services Section -->
+
+
+
+
+
+<!-- products news start -->
+
+<section class="pro-flip-section">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .pro-flip-section {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      background: #fff;
+      padding: 0px !important;
+    }
+
+    /* LEFT PANEL */
+    .pro-left-panel {
+      position: relative;
+      width: 35%;
+      background: linear-gradient(180deg, #2a2929, #5e5d5d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pro-left-panel img {
+      position: relative;
+      width: 90%;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(1);
+      transform: rotateY(-10deg) rotateX(5deg);
+      transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .pro-left-panel img:hover {
+      transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+      filter: grayscale(0.8);
+    }
+
+    .pro-vertical-text {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      color: #fff;
+      font-size: 1rem;
+      letter-spacing: 8px;
+    }
+
+    .pro-social-icons {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pro-social-icons a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    /* RIGHT PANEL */
+    .pro-right-panel {
+      width: 65%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 60px;
+      overflow: hidden;
+    }
+
+    .pro-top-menu {
+      display: flex;
+      justify-content: flex-end;
+      gap: 60px;
+      z-index: 10;
+    }
+
+    .pro-top-menu span {
+      font-size: 1rem;
+      color: #222;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .pro-top-menu span:hover {
+      color: #000;
+      font-weight: 600;
+    }
+
+    .pro-content {
+      text-align: left;
+      margin-top: 60px;
+      z-index: 2;
+      position: relative;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    #pro-title {
+      font-size: 6rem;
+      font-weight: 700;
+      color: #000;
+      line-height: 1;
+    }
+
+    #pro-subtitle {
+      font-size: 2rem;
+      background: linear-gradient(90deg, #363636, #9c9e9e, #edeaed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 5px;
+    }
+
+    #pro-description {
+      max-width: 520px;
+      font-size: 1rem;
+      color: #555;
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    /* ARROWS */
+    .pro-arrows {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      display: flex;
+      gap: 10px;
+      z-index: 5;
+    }
+
+    .pro-arrows button {
+      border: none;
+      background: #eee;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .pro-arrows button:hover {
+      background: #ddd;
+      color: #000;
+    }
+
+    /* FLIP CARDS */
+    .pro-vertical-cards {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      z-index: 1;
+    }
+
+    .pro-card {
+      position: relative;
+      width: 20%;
+      height: 100%;
+      perspective: 1000px;
+    }
+
+    .pro-card .front,
+    .pro-card .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: #fff;
+      border-left: 1px solid #eee;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .pro-card .back {
+      transform: rotateY(180deg);
+      background: #f7f7f7;
+    }
+
+    .pro-card.flipped .front {
+      transform: rotateY(180deg);
+    }
+
+    .pro-card.flipped .back {
+      transform: rotateY(0deg);
+    }
+
+    /* TEXT FADE ANIMATION */
+    .fade-out {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 900px) {
+      .pro-flip-section {
+        flex-direction: column;
+      }
+
+      .pro-left-panel,
+      .pro-right-panel {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .pro-left-panel {
+        height: 40vh;
+      }
+
+      .pro-left-panel img {
+        width: 60%;
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+
+      .pro-vertical-text {
+        font-size: 0.8rem;
+        left: 10px;
+        letter-spacing: 5px;
+      }
+
+      .pro-top-menu {
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      #pro-title {
+        font-size: 3rem;
+      }
+
+      #pro-subtitle {
+        font-size: 1.5rem;
+      }
+
+      #pro-description {
+        max-width: 100%;
+        font-size: 0.9rem;
+        margin-top: 10px;
+      }
+
+      .pro-arrows {
+        bottom: 20px;
+        right: 20px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .pro-vertical-cards {
+        display: none;
+      }
+    }
+  </style>
+
+  <div class="pro-left-panel">
+    <img id="pro-mainImage" src="assets/img/kelvins.png" alt="Slide Image">
+    <div class="pro-vertical-text">A R T I E A</div>
+    <div class="pro-social-icons">
+      <a href="#">c</a>
+      <a href="#">o</a>
+      <a href="#">b</a>
+      <a href="#">s</a>
+    </div>
+  </div>
+
+  <div class="pro-right-panel">
+    <div class="pro-top-menu">
+      <span>STRONG</span>
+      <span>DESIGN</span>
+      <span>PRO</span>
+    </div>
+
+    <div class="pro-content">
+      <h1 id="pro-title">Cobs</h1>
+      <h2 id="pro-subtitle">PRODUCT</h2>
+      <p id="pro-description">
+        Our natural environment is a priceless part of our heritage. Protecting it is our shared responsibility.
+      </p>
+    </div>
+
+    <div class="pro-arrows">
+      <button id="pro-prev"><</button>
+      <button id="pro-next">></button>
+    </div>
+
+    <div class="pro-vertical-cards">
+      <div class="pro-card"><div class="front"></div><div class="back"></div></div>
+      <div class="pro-card"><div class="front"></div><div class="back"></div></div>
+      <div class="pro-card"><div class="front"></div><div class="back"></div></div>
+      <div class="pro-card"><div class="front"></div><div class="back"></div></div>
+      <div class="pro-card"><div class="front"></div><div class="back"></div></div>
+    </div>
+  </div>
+
+  <script>
+    const proSlides = [
+      {title: "Cobs.", subtitle: "PRODUCT", desc: "Our natural environment is a priceless part of our heritage. Protecting it is our shared responsibility.", img: "assets/img/kelvins.png"},
+      {title: "Track", subtitle: "PRESERVATION", desc: "Forests and oceans are homes to countless species. Preserving biodiversity sustains life itself.", img: "assets/img/sec.png"},
+      {title: "Movable", subtitle: "PURIFICATION", desc: "Clean water is essential for all living beings. Nature filters and purifies water in ways technology cannot.", img: "assets/img/kelvins.png"},
+      {title: "Trim", subtitle: "SUSTAINABILITY", desc: "Harnessing renewable energy reduces our footprint and supports a balanced ecosystem.", img: "assets/img/kelvins.png"},
+      {title: "Trimless", subtitle: "PROTECTION", desc: "Every small act of conservation protects our only home — the Earth.", img: "assets/img/kelvins.png"}
+    ];
+
+    let proCurrent = 0;
+    const proTitle = document.getElementById("pro-title");
+    const proSubtitle = document.getElementById("pro-subtitle");
+    const proDesc = document.getElementById("pro-description");
+    const proImg = document.getElementById("pro-mainImage");
+    const proCards = document.querySelectorAll(".pro-card");
+
+    function proFlipAnimation() {
+      proCards.forEach((card, i) => {
+        setTimeout(() => {
+          card.classList.add("flipped");
+          setTimeout(() => {
+            card.classList.remove("flipped");
+          }, 600);
+        }, i * 120);
+      });
+    }
+
+    function proUpdateSlide(index) {
+      const s = proSlides[index];
+      proFlipAnimation();
+
+      const content = document.querySelector(".pro-content");
+      content.classList.add("fade-out");
+
+      setTimeout(() => {
+        proTitle.textContent = s.title;
+        proSubtitle.textContent = s.subtitle;
+        proDesc.textContent = s.desc;
+        proImg.src = s.img;
+
+        content.classList.remove("fade-out");
+        content.classList.add("fade-in");
+
+        setTimeout(() => {
+          content.classList.remove("fade-in");
+        }, 600);
+      }, 600);
+    }
+
+    document.getElementById("pro-next").onclick = () => {
+      proCurrent = (proCurrent + 1) % proSlides.length;
+      proUpdateSlide(proCurrent);
+    };
+
+    document.getElementById("pro-prev").onclick = () => {
+      proCurrent = (proCurrent - 1 + proSlides.length) % proSlides.length;
+      proUpdateSlide(proCurrent);
+    };
+
+    setInterval(() => {
+      proCurrent = (proCurrent + 1) % proSlides.length;
+      proUpdateSlide(proCurrent);
+    }, 6000);
+
+    proUpdateSlide(proCurrent);
+  </script>
+</section>
+
+<!-- products new end -->
+
+
+
+
+
+
+
 
     <!-- Faq Section -->
     <section id="faq" class="faq section">
