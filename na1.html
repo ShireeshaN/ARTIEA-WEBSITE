@@ -1,82 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mountain Animation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenMotive</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-        .mountain-gallery {
-            width: 80%;
-            height: 60%;
-            position: relative;
-            display: flex;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+  <style>
+    /* === GLOBAL === */
+    body {
+      background-color: #efefec;
+      font-family: "Inter", "Poppins", sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      color: #111;
+    }
 
-        .mountain-item {
-            width: 100%;
-            height: 100%;
-            transition: transform 1s ease-in-out;
-        }
+    /* === TOP BAR === */
+    .top-left {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: #333;
+      font-size: 15px;
+    }
 
-        .mountain-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .logo-icon {
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #dcdcd4 0%, #bfbfb4 100%);
+      border-radius: 50%;
+    }
 
-        #image-2 {
-            transform: translateX(100%);
-        }
+    .top-right {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
 
-        .mountain-gallery.active #image-2 {
-            transform: translateX(0);
-        }
+    .btn-menu {
+      border-radius: 50px;
+      padding: 8px 20px;
+      background-color: #e6e8d6;
+      color: #111;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-        .mountain-gallery.active #image-1 {
-            transform: translateX(-100%);
-        }
-    </style>
+    .btn-menu::after {
+      content: "• Discover Innovations";
+      color: #fff;
+      background-color: #000;
+      padding: 8px 15px;
+      border-radius: 50px;
+      margin-left: 6px;
+    }
+
+    .btn-renew {
+      border: 1px solid #d0d0d0;
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 14px;
+      background: #fff;
+      color: #111;
+    }
+
+    /* === MAIN TITLE === */
+    .main-title {
+      text-align: center;
+      font-size: 76px;
+      font-weight: 700;
+      margin-top: 160px;
+      color: #111;
+      letter-spacing: -1px;
+    }
+
+    /* === CARDS === */
+    .card-section {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 80px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .blur-card {
+      width: 280px;
+      height: 380px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      box-shadow: 0 4px 50px rgba(0, 0, 0, 0.06);
+      position: relative;
+      overflow: hidden;
+      color: #111;
+    }
+
+    /* Full image background */
+    .blur-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://images.unsplash.com/photo-1622554000573-cc7e6b1dd17c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=60");
+      background-size: cover;       /* FULL COVER */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: rgba(255, 255, 255, 0.25); /* Light overlay */
+      mix-blend-mode: lighten;       
+      filter: blur(1px);
+      z-index: -1;
+    }
+
+    .blur-card small {
+      font-size: 12px;
+      color: #222;
+      opacity: 0.8;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .blur-card .icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .blur-card h5 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* === HOVER EFFECT === */
+    .blur-card:hover {
+      transform: translateY(-6px);
+      transition: all 0.4s ease;
+    }
+
+    /* === BACKGROUND STONE TEXTURE === */
+    .stone-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 350px;
+      background-image: url("assets/img/10.png");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.85;
+      z-index: 1;
+      clip-path: polygon(0 60%, 100% 40%, 100% 100%, 0% 100%);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="mountain-gallery">
-            <!-- First Image Layout -->
-            <div class="mountain-item" id="image-1">
-                <img src="assets/img/R20.jpg" alt="Mountain Peaks">
-            </div>
-            <!-- Second Image Layout (Full Mountain) -->
-            <div class="mountain-item" id="image-2">
-                <img src="assets/img/R20.jpg" alt="Full Mountain">
-            </div>
-        </div>
-    </div>
 
-    <script>
-        document.querySelector("#image-1").addEventListener("click", function() {
-            const gallery = document.querySelector(".mountain-gallery");
-            gallery.classList.add("active");
-        });
-    </script>
+
+
+
+
+  <!-- Main Title -->
+  <h1 class="main-title">GreenMotive</h1>
+
+  <!-- Cards -->
+  <div class="card-section">
+    <div class="blur-card">
+      <small>Resources</small>
+      <div class="icon">➕</div>
+      <h5>ECO-URBAN DEVELOPMENT</h5>
+    </div>
+    <div class="blur-card">
+      <small>Management</small>
+      <div class="icon">⬡</div>
+      <h5>CONSERVATION TECHNOLOGIES</h5>
+    </div>
+    <div class="blur-card">
+      <small>Development</small>
+      <div class="icon">✖</div>
+      <h5>RESTORE OUR OCEANS</h5>
+    </div>
+  </div>
+
+  <!-- Stone Background -->
+  <div class="stone-bg"></div>
+
+  <!-- GSAP Animations -->
+  <script>
+    gsap.from(".main-title", { duration: 1.2, opacity: 0, y: -30, ease: "power2.out" });
+    gsap.from(".top-left", { duration: 1, opacity: 0, x: -40, delay: 0.3 });
+    gsap.from(".top-right", { duration: 1, opacity: 0, x: 40, delay: 0.3 });
+    gsap.from(".blur-card", {
+      duration: 1.2,
+      opacity: 0,
+      y: 40,
+      stagger: 0.25,
+      delay: 0.8,
+      ease: "power3.out"
+    });
+  </script>
+
 </body>
 </html>
