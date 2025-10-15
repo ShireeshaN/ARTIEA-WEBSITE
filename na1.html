@@ -1,82 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mountain Animation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Customer Profile — Grid Layout</title>
+  <style>
+    :root{
+      --bg:#000;
+      --line:#fff;
+      --gap:18px;
+      --tile-w:200px;
+      --tile-h:140px;
+      --label-size:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
+    /* container that mimics the reference layout */
+    .profile-canvas{
+      width:980px;
+      height:560px;
+      position:relative;
+      box-sizing:border-box;\    
+    }
 
-        .container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    /* long white guideline lines */
+    .v-line, .h-line{
+      position:absolute;
+      background:var(--line);
+    }
+    .v-line{ width:2px; top:0; bottom:0; }
+    .h-line{ height:2px; left:0; right:0; }
 
-        .mountain-gallery {
-            width: 80%;
-            height: 60%;
-            position: relative;
-            display: flex;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+    /* image tile base */
+    .tile{
+      position:absolute;
+      overflow:hidden;
+      background:#222;
+      display:block;
+      border:0;
+      box-sizing:border-box;
+    }
+    .tile img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(100%) contrast(.9); }
 
-        .mountain-item {
-            width: 100%;
-            height: 100%;
-            transition: transform 1s ease-in-out;
-        }
+    /* small caption area below or beside tiles */
+    .caption{
+      position:absolute;
+      font-size:var(--label-size);
+      color:var(--line);
+      white-space:nowrap;
+    }
 
-        .mountain-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* decorative dividing ticks (short horizontal/vertical lines) */
+    .tick{ position:absolute; background:var(--line); }
 
-        #image-2 {
-            transform: translateX(100%);
-        }
+    /* pin markers if you want exact pins */
+    .pin{
+      position:absolute;
+      width:10px; height:10px;
+      border-radius:50%;
+      background:var(--line);
+      transform:translate(-50%,-50%);
+      box-shadow:0 0 6px rgba(255,255,255,.25);
+    }
 
-        .mountain-gallery.active #image-2 {
-            transform: translateX(0);
-        }
+    /* --- Specific positions to match reference image --- */
+    /* Vertical guideline positions */
+    .v1{ left:28%; }   /* left-most vertical */
+    .v2{ left:46%; }   /* middle vertical */
+    .v3{ left:70%; }   /* right-most vertical */
 
-        .mountain-gallery.active #image-1 {
-            transform: translateX(-100%);
-        }
-    </style>
+    /* Horizontal guideline positions */
+    .h1{ top:22%; }
+    .h2{ top:46%; }
+    .h3{ top:62%; }
+
+    /* Tiles (pin-to-pin) — replace image URLs with your images */
+    /* left cluster */
+    .tile.a{ left:6%; top:34%; width:200px; height:120px; }
+    .tile.b{ left:12%; top:12%; width:160px; height:140px; }
+    .tile.c{ left:26%; top:28%; width:120px; height:110px; }
+
+    /* center cluster */
+    .tile.d{ left:42%; top:6%; width:190px; height:130px; }
+    .tile.e{ left:44%; top:38%; width:220px; height:140px; }
+
+    /* right cluster */
+    .tile.f{ left:64%; top:8%; width:180px; height:160px; }
+    .tile.g{ left:66%; top:44%; width:150px; height:140px; }
+
+    /* captions and labels (approx positions) */
+    .lab.art{ left:2%; top:60%; }
+    .lab.enj{ left:6%; top:73%; }
+    .lab.edu{ left:28%; top:16%; }
+    .lab.ind{ left:48%; top:4%; }
+    .lab.well{ left:50%; top:36%; }
+    .lab.amb{ left:48%; top:52%; }
+    .lab.soph{ left:78%; top:6%; }
+
+    /* small responsive tweak */
+    @media(max-width:1100px){ .profile-canvas{ transform:scale(.9); } }
+    @media(max-width:900px){ .profile-canvas{ transform:scale(.75); } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="mountain-gallery">
-            <!-- First Image Layout -->
-            <div class="mountain-item" id="image-1">
-                <img src="assets/img/R20.jpg" alt="Mountain Peaks">
-            </div>
-            <!-- Second Image Layout (Full Mountain) -->
-            <div class="mountain-item" id="image-2">
-                <img src="assets/img/R20.jpg" alt="Full Mountain">
-            </div>
-        </div>
-    </div>
+  <div class="profile-canvas" id="canvas">
 
-    <script>
-        document.querySelector("#image-1").addEventListener("click", function() {
-            const gallery = document.querySelector(".mountain-gallery");
-            gallery.classList.add("active");
-        });
-    </script>
+    <!-- long guideline lines (match reference) -->
+    <div class="v-line v1"></div>
+    <div class="v-line v2"></div>
+    <div class="v-line v3"></div>
+    <div class="h-line h1"></div>
+    <div class="h-line h2"></div>
+    <div class="h-line h3"></div>
+
+    <!-- image tiles (replace src with your images) -->
+    <a class="tile a" href="#">
+      <img src="https://via.placeholder.com/400x240?text=Artistic+Scene" alt="art" />
+    </a>
+
+    <a class="tile b" href="#">
+      <img src="https://via.placeholder.com/320x280?text=Portrait+1" alt="portrait" />
+    </a>
+
+    <a class="tile c" href="#">
+      <img src="https://via.placeholder.com/240x200?text=Interior" alt="interior" />
+    </a>
+
+    <a class="tile d" href="#">
+      <img src="https://via.placeholder.com/380x260?text=Independent" alt="independent" />
+    </a>
+
+    <a class="tile e" href="#">
+      <img src="https://via.placeholder.com/440x280?text=Well+Paid" alt="well paid" />
+    </a>
+
+    <a class="tile f" href="#">
+      <img src="https://via.placeholder.com/360x320?text=Sophisticated+Taste" alt="sophisticated" />
+    </a>
+
+    <a class="tile g" href="#">
+      <img src="https://via.placeholder.com/300x260?text=Ambitious" alt="ambitious" />
+    </a>
+
+    <!-- descriptive labels (editable) -->
+    <div class="caption lab art">Artistic</div>
+    <div class="caption lab enj">Enjoys the finer things in life</div>
+    <div class="caption lab edu">Educated</div>
+    <div class="caption lab ind">Independent</div>
+    <div class="caption lab well">Well paid</div>
+    <div class="caption lab amb">Ambitious</div>
+    <div class="caption lab soph">Sophisticated taste</div>
+
+    <!-- optional pin markers: uncomment for debugging pins -->
+    <!-- <div class="pin" style="left:6%; top:34%;"></div>
+    <div class="pin" style="left:12%; top:12%;"></div>
+    <div class="pin" style="left:26%; top:28%;"></div>
+    <div class="pin" style="left:42%; top:6%;"></div>
+    <div class="pin" style="left:44%; top:38%;"></div>
+    <div class="pin" style="left:64%; top:8%;"></div>
+    <div class="pin" style="left:66%; top:44%;"></div> -->
+
+  </div>
+
+  <!--
+    INSTRUCTIONS:
+    1) Save this file as `customer-profile-layout.html` and open in a browser.
+    2) Replace the placeholder image URLs (via.placeholder...) with your actual image paths.
+    3) Tweak the .tile.* left/top/width/height values to pin-to-pin match your reference image precisely.
+    4) You can enable the small .pin elements (uncomment) to help position anchors visually.
+  -->
 </body>
 </html>
