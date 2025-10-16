@@ -1,183 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Customer Profile — Grid Layout</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lighting Layout</title>
   <style>
-    :root{
-      --bg:#000;
-      --line:#fff;
-      --gap:18px;
-      --tile-w:200px;
-      --tile-h:140px;
-      --label-size:12px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    html,body{height:100%;}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:30px;
+    body {
+      margin: 0;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      color: #fff;
     }
 
-    /* container that mimics the reference layout */
-    .profile-canvas{
-      width:980px;
-      height:560px;
-      position:relative;
-      box-sizing:border-box;\    
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: repeat(2, 50vh);
+      gap: 5px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 5px;
     }
 
-    /* long white guideline lines */
-    .v-line, .h-line{
-      position:absolute;
-      background:var(--line);
-    }
-    .v-line{ width:2px; top:0; bottom:0; }
-    .h-line{ height:2px; left:0; right:0; }
-
-    /* image tile base */
-    .tile{
-      position:absolute;
-      overflow:hidden;
-      background:#222;
-      display:block;
-      border:0;
-      box-sizing:border-box;
-    }
-    .tile img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(100%) contrast(.9); }
-
-    /* small caption area below or beside tiles */
-    .caption{
-      position:absolute;
-      font-size:var(--label-size);
-      color:var(--line);
-      white-space:nowrap;
+    .box {
+      position: relative;
+      overflow: hidden;
+      background-color: #111;
     }
 
-    /* decorative dividing ticks (short horizontal/vertical lines) */
-    .tick{ position:absolute; background:var(--line); }
-
-    /* pin markers if you want exact pins */
-    .pin{
-      position:absolute;
-      width:10px; height:10px;
-      border-radius:50%;
-      background:var(--line);
-      transform:translate(-50%,-50%);
-      box-shadow:0 0 6px rgba(255,255,255,.25);
+    .box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
-    /* --- Specific positions to match reference image --- */
-    /* Vertical guideline positions */
-    .v1{ left:28%; }   /* left-most vertical */
-    .v2{ left:46%; }   /* middle vertical */
-    .v3{ left:70%; }   /* right-most vertical */
+    .box:hover img {
+      transform: scale(1.05);
+      opacity: 1;
+    }
 
-    /* Horizontal guideline positions */
-    .h1{ top:22%; }
-    .h2{ top:46%; }
-    .h3{ top:62%; }
+    .box h2 {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 0;
+    }
 
-    /* Tiles (pin-to-pin) — replace image URLs with your images */
-    /* left cluster */
-    .tile.a{ left:6%; top:34%; width:200px; height:120px; }
-    .tile.b{ left:12%; top:12%; width:160px; height:140px; }
-    .tile.c{ left:26%; top:28%; width:120px; height:110px; }
+    /* Specific Layout */
+    .indoor {
+      grid-row: span 2;
+    }
 
-    /* center cluster */
-    .tile.d{ left:42%; top:6%; width:190px; height:130px; }
-    .tile.e{ left:44%; top:38%; width:220px; height:140px; }
+    .outdoor {
+      grid-row: span 2;
+    }
 
-    /* right cluster */
-    .tile.f{ left:64%; top:8%; width:180px; height:160px; }
-    .tile.g{ left:66%; top:44%; width:150px; height:140px; }
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
 
-    /* captions and labels (approx positions) */
-    .lab.art{ left:2%; top:60%; }
-    .lab.enj{ left:6%; top:73%; }
-    .lab.edu{ left:28%; top:16%; }
-    .lab.ind{ left:48%; top:4%; }
-    .lab.well{ left:50%; top:36%; }
-    .lab.amb{ left:48%; top:52%; }
-    .lab.soph{ left:78%; top:6%; }
+      .indoor, .outdoor {
+        grid-row: auto;
+      }
+    }
 
-    /* small responsive tweak */
-    @media(max-width:1100px){ .profile-canvas{ transform:scale(.9); } }
-    @media(max-width:900px){ .profile-canvas{ transform:scale(.75); } }
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="profile-canvas" id="canvas">
+  <div class="container">
+    <div class="box indoor">
+      <img src="assets/img/portfolio/portfolio-3.webp" alt="Indoor Light">
+      <h2>Indoor Light</h2>
+    </div>
 
-    <!-- long guideline lines (match reference) -->
-    <div class="v-line v1"></div>
-    <div class="v-line v2"></div>
-    <div class="v-line v3"></div>
-    <div class="h-line h1"></div>
-    <div class="h-line h2"></div>
-    <div class="h-line h3"></div>
+    <div class="box">
+      <img src="assets/img/portfolio/portfolio-3.webp" alt="New Products">
+      <h2>New Products</h2>
+    </div>
 
-    <!-- image tiles (replace src with your images) -->
-    <a class="tile a" href="#">
-      <img src="https://via.placeholder.com/400x240?text=Artistic+Scene" alt="art" />
-    </a>
+    <div class="box outdoor">
+      <img src="assets/img/portfolio/portfolio-3.webp" alt="Outdoor Light">
+      <h2>Outdoor Light</h2>
+    </div>
 
-    <a class="tile b" href="#">
-      <img src="https://via.placeholder.com/320x280?text=Portrait+1" alt="portrait" />
-    </a>
-
-    <a class="tile c" href="#">
-      <img src="https://via.placeholder.com/240x200?text=Interior" alt="interior" />
-    </a>
-
-    <a class="tile d" href="#">
-      <img src="https://via.placeholder.com/380x260?text=Independent" alt="independent" />
-    </a>
-
-    <a class="tile e" href="#">
-      <img src="https://via.placeholder.com/440x280?text=Well+Paid" alt="well paid" />
-    </a>
-
-    <a class="tile f" href="#">
-      <img src="https://via.placeholder.com/360x320?text=Sophisticated+Taste" alt="sophisticated" />
-    </a>
-
-    <a class="tile g" href="#">
-      <img src="https://via.placeholder.com/300x260?text=Ambitious" alt="ambitious" />
-    </a>
-
-    <!-- descriptive labels (editable) -->
-    <div class="caption lab art">Artistic</div>
-    <div class="caption lab enj">Enjoys the finer things in life</div>
-    <div class="caption lab edu">Educated</div>
-    <div class="caption lab ind">Independent</div>
-    <div class="caption lab well">Well paid</div>
-    <div class="caption lab amb">Ambitious</div>
-    <div class="caption lab soph">Sophisticated taste</div>
-
-    <!-- optional pin markers: uncomment for debugging pins -->
-    <!-- <div class="pin" style="left:6%; top:34%;"></div>
-    <div class="pin" style="left:12%; top:12%;"></div>
-    <div class="pin" style="left:26%; top:28%;"></div>
-    <div class="pin" style="left:42%; top:6%;"></div>
-    <div class="pin" style="left:44%; top:38%;"></div>
-    <div class="pin" style="left:64%; top:8%;"></div>
-    <div class="pin" style="left:66%; top:44%;"></div> -->
-
+    <div class="box">
+      <img src="assets/img/portfolio/portfolio-3.webp" alt="Auto Tracking Light">
+      <h2>Auto Tracking Light</h2>
+    </div>
   </div>
-
-  <!--
-    INSTRUCTIONS:
-    1) Save this file as `customer-profile-layout.html` and open in a browser.
-    2) Replace the placeholder image URLs (via.placeholder...) with your actual image paths.
-    3) Tweak the .tile.* left/top/width/height values to pin-to-pin match your reference image precisely.
-    4) You can enable the small .pin elements (uncomment) to help position anchors visually.
-  -->
 </body>
 </html>
