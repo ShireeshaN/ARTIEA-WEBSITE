@@ -12,6 +12,12 @@
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Font Awesome CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -347,7 +353,7 @@ h6 {
 </style>
 
 
-<section class="luxury-banner">
+<section class="luxury-banner pb-0">
   <div class="luxury-slider">
     <div class="luxury-slides">
       <!-- Slide 1 -->
@@ -375,6 +381,7 @@ h6 {
 </section>
 
 <style>
+
 .luxury-banner {
   position: relative;
   width: 100%;
@@ -495,26 +502,213 @@ document.querySelector('.luxury-next').addEventListener('click', () => {
 
 
   </main>
-
-  <footer id="footer" class="footer">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">MinimalFolio</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="social-links d-flex justify-content-center">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
-      </div>
-      <div class="credits">
-
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+<!-- ================= Footer Section ================= -->
+<section class="footer">
+  <div class="footer-top">
+    <div class="footer-column footer-info">
+      <img src="assets/img/logo.png" alt="Artiea Logo" class="footer-logo" />
+      <p><strong>PHONE:</strong> +1234567890</p>
+      <p><strong>E-mail:</strong> sales@artiea.com</p>
+      <p>
+        <strong>ADDRESS:</strong> Via Monte Napoleone, 20121 Milano MI, Italy
+      </p>
     </div>
 
-  </footer>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+    </div>
+
+    <div class="footer-column">
+      <h4>Solution</h4>
+      <p>Retail Solutions</p>
+      <p>Supermarket Solutions</p>
+      <p>Meeting Room Solutions</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Products</h4>
+      <p>Cob Light</p>
+      <p>Laser Blade</p>
+      <p>Wallwasher</p>
+      <p>Magnetic Track Light</p>
+      <p>Surface </p>
+      <p>Tiltable Light</p>
+      <!-- <p>Pendant</p>
+      <p>Wallwasher</p>
+      <p>Switch & Panels</p>
+      <p>Surface</p>
+      <p>Accessories</p> -->
+    </div>
+
+    <div class="footer-column">
+      <h4>Media</h4>
+      <p>News</p>
+      <p>Blog</p>
+      <!-- <p>Office</p>
+      <p>Car Dealership</p>
+      <p>Art Exhibition</p> -->
+    </div>
+
+    <div class="footer-column">
+      <h4>Service Support</h4>
+      <p>FAQ</p>
+      <p>Download</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>About Us</h4>
+      <p>About Artiea</p>
+      <p>Contact Us</p>
+      <!-- <p>News</p> -->
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <p>
+        ©2025 Artiea All Rights Reserved. 
+        <span class="divider">|</span> Cookie Policy
+        <span class="divider">|</span> Privacy Policy
+        <span class="divider">|</span> Disclaimer
+        <span class="divider">|</span> Website Map
+      </p>
+    </div>
+
+    <div class="footer-socials">
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+       <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-threads"></i></a>
+      <a href="#"><i class="fab fa-pinterest"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+/* -------------------- Footer Layout -------------------- */
+
+.footer {
+  background: #fff;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  border-top: 1px solid #e8e8e8;
+  padding: 60px 8% 20px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(6, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 50px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.footer-column p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-column p:hover {
+  color: #000;
+}
+
+.footer-info p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.footer-logo {
+  width: 90px;
+  margin-bottom: 15px;
+}
+
+/* -------------------- Bottom Row -------------------- */
+.footer-bottom {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #666;
+}
+
+.footer-bottom-left {
+  flex: 1;
+}
+
+.footer-bottom-left .divider {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-socials a {
+  background: #000;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  background: #ff4500;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 1200px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  .footer {
+    padding: 40px 6%;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+</style>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
