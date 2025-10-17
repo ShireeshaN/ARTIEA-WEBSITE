@@ -547,6 +547,8 @@ h2 { font-size:2rem; margin:10px 0; }
 
 
 <!-- ✅ PRODUCTS SECTION START -->
+
+
 <section class="product-section">
   <h2 class="product-title">PRODUCTS</h2>
 
@@ -559,12 +561,13 @@ h2 { font-size:2rem; margin:10px 0; }
     <button class="product-tab active" data-category="INDUSTRY">INDUSTRY</button>
   </div>
 
-  <!-- Product Grid -->
-  <div id="unique-product-grid" class="product-grid"></div>
+  <!-- Dynamic Layout Container -->
+  <div id="unique-product-layout" class="container"></div>
 </section>
-
+<style>
 <!-- ✅ PRODUCTS SECTION STYLES -->
 <style>
+  /* ---------- Section Styling ---------- */
   .product-section {
     text-align: center;
     padding: 80px 20px;
@@ -580,6 +583,7 @@ h2 { font-size:2rem; margin:10px 0; }
     font-weight: 600;
   }
 
+  /* ---------- Tabs ---------- */
   .product-tabs {
     display: flex;
     flex-wrap: wrap;
@@ -608,50 +612,71 @@ h2 { font-size:2rem; margin:10px 0; }
     background: #eee;
   }
 
-  .product-grid {
+  /* ---------- Layout (Black Grid Style) ---------- */
+  .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-    max-width: 1200px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 50vh);
+    gap: 5px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 5px;
+   
   }
 
-  .product-item {
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
+  .box {
+    position: relative;
+    overflow: hidden;
+    background-color: #111;
   }
 
-  .product-item.show {
+  .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  .box:hover img {
+    transform: scale(1.05);
     opacity: 1;
-    transform: translateY(0);
   }
 
-  .product-item img {
-    max-height: 200px;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+  .box h2 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
   }
 
-  .product-item img:hover {
-    transform: scale(1.08);
+  .indoor {
+    grid-row: span 2;
   }
 
-  .product-name {
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: #444;
-    font-weight: 500;
+  .outdoor {
+    grid-row: span 2;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .container {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
+    .indoor,
+    .outdoor {
+      grid-row: auto;
+    }
   }
 
   @media (max-width: 600px) {
-    .product-tab {
-      padding: 12px 25px;
-      font-size: 13px;
-    }
-    .product-title {
-      font-size: 32px;
+    .container {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -659,81 +684,83 @@ h2 { font-size:2rem; margin:10px 0; }
 <!-- ✅ PRODUCTS SECTION SCRIPT -->
 <script>
   (function () {
-    const productsData = {
+    const layoutData = {
       COB: [
-        { name: "COB SPOT", image: "assets/img/2222.png" },
-        { name: "COB DOWNLIGHT", image: "assets/img/2222.png" },
-        { name: "COB ADJUSTABLE", image: "assets/img/2222.png" },
-        { name: "COB SURFACE", image: "assets/img/2222.png" },
-        
+        { title: "Indoor Light", image: "assets/img/10.png", class: "box indoor" },
+        { title: "New Products", image: "assets/img/10.png", class: "box" },
+        { title: "Outdoor Light", image: "assets/img/10.png", class: "box outdoor" },
+        { title: "Auto Tracking Light", image: "assets/img/10.png", class: "box" },
       ],
       LASERBLADES: [
-        { name: "LASER BLADE MINI", image: "images/laserblade-mini.png" },
-        { name: "LASER BLADE PRO", image: "images/laserblade-pro.png" },
-        { name: "LASER BLADE WALL", image: "images/laserblade-wall.png" },
+        { title: "Indoor Light", image: "assets/img/11.png", class: "box indoor" },
+        { title: "New Products", image: "assets/img/11.png", class: "box" },
+        { title: "Outdoor Light", image: "assets/img/11.png", class: "box outdoor" },
+        { title: "Auto Tracking Light", image: "assets/img/11.png", class: "box" },
       ],
       WALLWASHERS: [
-        { name: "LINEAR WALL WASHER", image: "images/wallwasher-linear.png" },
-        { name: "RECESSED WALL WASHER", image: "images/wallwasher-recessed.png" },
-        { name: "SURFACE WALL WASHER", image: "images/wallwasher-surface.png" },
+        { title: "Indoor Light", image: "assets/img/portfolio/indoor-wall.webp", class: "box indoor" },
+        { title: "New Products", image: "assets/img/portfolio/new-wall.webp", class: "box" },
+        { title: "Outdoor Light", image: "assets/img/portfolio/outdoor-wall.webp", class: "box outdoor" },
+        { title: "Auto Tracking Light", image: "assets/img/portfolio/auto-wall.webp", class: "box" },
       ],
       MAGNETIC: [
-        { name: "MAGNETIC SPOT", image: "images/magnetic-spot.png" },
-        { name: "MAGNETIC LINEAR", image: "images/magnetic-linear.png" },
-        { name: "MAGNETIC FLOOD", image: "images/magnetic-flood.png" },
-        { name: "MAGNETIC PENDANT", image: "images/magnetic-pendant.png" },
+        { title: "Indoor Light", image: "assets/img/portfolio/indoor-mag.webp", class: "box indoor" },
+        { title: "New Products", image: "assets/img/portfolio/new-mag.webp", class: "box" },
+        { title: "Outdoor Light", image: "assets/img/portfolio/outdoor-mag.webp", class: "box outdoor" },
+        { title: "Auto Tracking Light", image: "assets/img/portfolio/auto-mag.webp", class: "box" },
       ],
       INDUSTRY: [
-        { name: "HIGH-BAY", image: "images/highbay.png" },
-        { name: "TUBE", image: "images/tube.png" },
-        { name: "SOLID TUBE", image: "images/solidtube.png" },
-        { name: "DOWNLIGHT", image: "images/downlight.png" },
-        { name: "FLOOD LIGHT", image: "images/floodlight.png" },
+        { title: "Indoor Light", image: "assets/img/portfolio/indoor-industry.webp", class: "box indoor" },
+        { title: "New Products", image: "assets/img/portfolio/new-industry.webp", class: "box" },
+        { title: "Outdoor Light", image: "assets/img/portfolio/outdoor-industry.webp", class: "box outdoor" },
+        { title: "Auto Tracking Light", image: "assets/img/portfolio/auto-industry.webp", class: "box" },
       ],
     };
 
-    const productGrid = document.getElementById("unique-product-grid");
+    const layoutContainer = document.getElementById("unique-product-layout");
     const tabs = document.querySelectorAll(".product-tab");
 
-    function showProducts(category) {
+    function showLayout(category) {
       tabs.forEach((tab) => tab.classList.remove("active"));
       document
         .querySelector(`.product-tab[data-category="${category}"]`)
         .classList.add("active");
 
-      productGrid.innerHTML = "";
+      layoutContainer.innerHTML = "";
 
-      const items = productsData[category];
+      const items = layoutData[category];
       if (!items || items.length === 0) {
-        productGrid.innerHTML =
-          '<p style="grid-column: 1 / -1; color: #777;">No products in this category.</p>';
+        layoutContainer.innerHTML =
+          '<p style="grid-column: 1 / -1; color: #fff; padding: 50px;">No images available for this category.</p>';
         return;
       }
 
-      items.forEach((p, i) => {
+      items.forEach((item) => {
         const div = document.createElement("div");
-        div.classList.add("product-item");
+        div.className = item.class;
         div.innerHTML = `
-          <img src="${p.image}" alt="${p.name}" />
-          <div class="product-name">${p.name}</div>
+          <img src="${item.image}" alt="${item.title}">
+          <h2>${item.title}</h2>
         `;
-        productGrid.appendChild(div);
-        setTimeout(() => div.classList.add("show"), 100 * i);
+        layoutContainer.appendChild(div);
       });
     }
 
     // Tab click handler
     tabs.forEach((tab) => {
       tab.addEventListener("click", () =>
-        showProducts(tab.getAttribute("data-category"))
+        showLayout(tab.getAttribute("data-category"))
       );
     });
 
     // Default load
-    showProducts("INDUSTRY");
+    showLayout("INDUSTRY");
   })();
 </script>
+
+
 <!-- ✅ PRODUCTS SECTION END -->
+
 
 
 
