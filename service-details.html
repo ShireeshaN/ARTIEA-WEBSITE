@@ -333,28 +333,213 @@
 
   </main>
 
-  <footer id="footer" class="footer">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">MinimalFolio</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="social-links d-flex justify-content-center">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+<!-- ================= Footer Section ================= -->
+<section class="footer">
+  <div class="footer-top">
+    <div class="footer-column footer-info">
+      <img src="assets/img/logo.png" alt="Artiea Logo" class="footer-logo" />
+      <p><a href="" target="_blank"></a><strong>PHONE:</strong> +1234567890</p>
+      <p><a href="mailto:sales@artiea.com" target="_blank"><strong>E-mail:</strong> sales@artiea.com</p></a>
+      <p><a href="" target="_blank">
+        <strong>ADDRESS:</strong> Via Monte Napoleone, 20121 Milano MI, Italy</a>
+      </p>
     </div>
 
-  </footer>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+    </div>
+
+    <div class="footer-column">
+      <h4>Solution</h4>
+      <a href=""><p>Retail Solutions</p></a>
+      <a href=""><p>Supermarket Solutions</p></a>
+      <a href=""><p>Meeting Room Solutions</p></a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Products</h4>
+      <a href="cob-lights.html"><p>Cob Light</p></a>
+      <a href="laser-blades.html"><p>Laser Blade</p></a>
+      <a href="wallwashers.html"><p>Wallwasher</p></a>
+      <a href="magnetic-track-lights.html"><p>Magnetic Track Light</p></a>
+      <a href="surface-lights.html"><p>Surface </p></a>
+      <a href="tiltable-lights.html"><p>Tiltable Light</p></a>
+      <!-- <p>Pendant</p>
+      <p>Wallwasher</p>
+      <p>Switch & Panels</p>
+      <p>Surface</p>
+      <p>Accessories</p> -->
+    </div>
+
+    <div class="footer-column">
+      <h4>Media</h4>
+      <a href="news.html"><p>News</p></a>
+      <a href="blog.html"><p>Blog</p></a>
+      <!-- <p>Office</p>
+      <p>Car Dealership</p>
+      <p>Art Exhibition</p> -->
+    </div>
+
+    <a class="footer-column">
+      <h4>Service Support</h4>
+      <a href="faq.html"><p>FAQ</p></a>
+      <a href="catalogue.html"><p>Download</p></a>
+    </div>
+
+    <a class="footer-column">
+      <h4>About Us</h4>
+      <a href="about.html"><p>About Artiea</p></a>
+      <a href="contact.html"><p>Contact Us</p></a>
+      <!-- <p>News</p> -->
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <p>
+        ©2025 Artiea All Rights Reserved. 
+        <span class="divider">|</span> <a href="" target="_blank">Cookie Policy</a>
+        <span class="divider">|</span> <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+        <span class="divider">|</span> <a href="" target="_blank">Disclaimer</a>
+        <span class="divider">|</span> <a href="" target="_blank">Website Map</a>
+      </p>
+    </div>
+
+    <div class="footer-socials">
+      <a href="#"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
+       <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-threads"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-pinterest"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+/* -------------------- Footer Layout -------------------- */
+
+.footer {
+  background: #fff;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  border-top: 1px solid #e8e8e8;
+  padding: 60px 8% 20px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(6, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 50px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.footer-column p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-column p:hover {
+  color: #000;
+}
+
+.footer-info p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.footer-logo {
+  width: 90px;
+  margin-bottom: 15px;
+}
+
+/* -------------------- Bottom Row -------------------- */
+.footer-bottom {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #666;
+}
+
+.footer-bottom-left {
+  flex: 1;
+}
+
+.footer-bottom-left .divider {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-socials a {
+  background: #000;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  background: #ff4500;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 1200px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  .footer {
+    padding: 40px 6%;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+</style>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
