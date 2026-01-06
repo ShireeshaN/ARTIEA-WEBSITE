@@ -379,6 +379,7 @@
     <img src="assets/img/15.png" data-img="assets/img/15.png" data-text="TRACK" data-index="2" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
     <img src="assets/img/17.png" data-img="assets/img/17.png" data-text="LIGHT" data-index="3" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
     <img src="assets/img/18.png" data-img="assets/img/18.png" data-text="COBS" data-index="4" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
+     <img src="assets/img/18.png" data-img="assets/img/18.png" data-text="COBS" data-index="4" style="width:80px; opacity:0.5; cursor:pointer; transition:all 0.3s ease;">
   </div>
 
   <!-- Page index -->
@@ -498,16 +499,16 @@
   <div class="product-tabs">
     <button class="product-tab" data-category="COB">COB</button>
     <button class="product-tab" data-category="LASERBLADES">LASER BLADES</button>
-    <button class="product-tab" data-category="WALLWASHERS">WALL WASHERS</button>
-    <button class="product-tab" data-category="MAGNETIC">MAGNETIC TRACK</button>
-    <button class="product-tab active" data-category="INDUSTRY">INDUSTRY</button>
+    <button class="product-tab" data-category="WALLWASHERS"> MAGNETIC TRACK</button>
+    <button class="product-tab" data-category="MAGNETIC">WALL WASHERS</button>
+    <button class="product-tab active" data-category="INDUSTRY">SURFACE LIGHTS</button>
   </div>
 
   <!-- Dynamic Layout Container -->
   <div id="unique-product-layout" class="container"></div>
 </section>
-<style>
-<!-- ✅ PRODUCTS SECTION STYLES -->
+
+
 <style>
   /* ---------- Section Styling ---------- */
   .product-section {
@@ -732,8 +733,8 @@
   <div class="lux-slider" id="luxSlider">
     <img id="lux_img" src="assets/img/15.png" alt="Luxury Banner">
     <div class="lux_overlay">
-      <h1 id="lux_title">Capella Bangkok</h1>
-      <p id="lux_tag">Luxury riverside escape in the heart of Bangkok.</p>
+      <h1 id="lux_title">Cobs</h1>
+      <p id="lux_tag">cobs</p>
     </div>
     <div class="lux_slices" id="lux_slices"></div>
   </div>
@@ -826,12 +827,12 @@
 
 <script>
 const luxImages = [
-  { url: "assets/img/11.png", title: "Capella Bangkok", tag: "Luxury riverside escape in the heart of Bangkok." },
-  { url: "assets/img/15.png", title: "Alila Shanghai", tag: "Modern elegance blending culture and innovation." },
-  { url: "assets/img/16.png", title: "The St. Regis Macao", tag: "Timeless sophistication and exquisite hospitality." },
-  { url: "assets/img/17.png", title: "Andaz Nanjing Hexi", tag: "A stylish urban retreat above the skyline." },
-  { url: "assets/img/18.png", title: "Atlantis The Royal, Dubai", tag: "Where ocean meets opulence in every detail." },
-  { url: "assets/img/12.png", title: "W Maldives Resort", tag: "An island paradise reimagined with bold design." }
+  { url: "assets/img/11.png", title: "cobs", tag: "Luxury riverside escape in the heart of Bangkok." },
+  { url: "assets/img/15.png", title: "laser blades", tag: "Modern elegance blending culture and innovation." },
+  { url: "assets/img/16.png", title: "Magnetic Tracks", tag: "Timeless sophistication and exquisite hospitality." },
+  { url: "assets/img/17.png", title: "wall Washers", tag: "A stylish urban retreat above the skyline." },
+  { url: "assets/img/18.png", title: "Surface Lights, Dubai", tag: "Where ocean meets opulence in every detail." },
+ 
 ];
 
 const luxImg = document.getElementById("lux_img");
@@ -1667,10 +1668,10 @@ window.addEventListener("resize", () => {
     <div class="footer-col">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
 
@@ -1678,11 +1679,11 @@ window.addEventListener("resize", () => {
     <div class="footer-col">
       <h4>Products</h4>
       <ul>
-        <li><a href="#">COBs</a></li>
-        <li><a href="#">Laser Blades</a></li>
-        <li><a href="#">Magnetic Track</a></li>
-        <li><a href="#">Wall Washers</a></li>
-        <li><a href="#">Surface Lights</a></li>
+        <li><a href="cob-lights.html">COBs</a></li>
+        <li><a href="laser-blades.html">Laser Blades</a></li>
+        <li><a href="magnetic-track-lights.html">Magnetic Track</a></li>
+        <li><a href="wallwashers.html">Wall Washers</a></li>
+        <li><a href="surface-lights.html">Surface Lights</a></li>
       </ul>
     </div>
 
@@ -1708,7 +1709,7 @@ window.addEventListener("resize", () => {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   .site-footer {
-  background: #0d0d0d;
+  background: #323232;
   color: #fefefe;
   font-family: Arial, sans-serif;
 }
